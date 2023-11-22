@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <title>S T A R B O Y</title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <link href="https://db.onlinewebfonts.com/c/7035ead8175cc6b0fe6c460be5baca9a?family=Frisans+W01+Bold"
+        rel="stylesheet">
+    <!-- Nucleo Icons -->
+    <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- CSS Files -->
+    <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
+    <!-- DataTables -->
+    <link rel="stylesheet" href="../assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+</head>
+
+<body class="g-sidenav-show bg-gray-100 g-sidenav-pinned">
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+        <!-- Navbar -->
+        <nav class="navbar navbar-main navbar-expand-lg position-sticky top-1 px-0 mx-4 border-radius-xl z-index-sticky shadow-none"
+            id="navbarBlur" data-scroll="true">
+            <div class="container-fluid py-1 px-3">
+                <a href="" class="nav-link p-0 text-body change-screen" data-screen="book-list">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-arrow-left me-2"></i>
+                        <span class="font-weight-bolder">back</span>
+                    </div>
+                </a>
+                <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4">
+                    <div class="ms-md-auto pe-md-3 d-flex align-items-center"></div>
+                    <ul class="navbar-nav justify-content-end">
+                        <li class="nav-item d-flex align-items-center">
+                            <a id="log-out-btn" class="nav-link font-weight-bold px-0 text-body">
+                                <i class="fa fa-sign-out me-sm-1" aria-hidden="true"></i>
+                                <span class="d-sm-inline d-none">Log out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- End Navbar -->
+
+        <div class="container-fluid py-3">
+            <!-- content -->
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12 mt-2">
+                                    <div class="table-responsive p-0">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-secondary font-weight-bolder" style="width: 50%">
+                                                        Products</th>
+                                                    <th class="text-secondary font-weight-bolder ps-2"
+                                                        style="width: 25%">
+                                                        Barcode</th>
+                                                    <th class="text-secondary font-weight-bolder ps-2"
+                                                        style="width: 10%">
+                                                        Quantity</th>
+                                                    <th class="text-secondary font-weight-bolder ps-2"
+                                                        style="width: 15%">
+                                                        Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex">
+                                                            <img class="w-25" src="../assets/img/iphone15-pro.png"
+                                                                alt="off_white">
+                                                            <h6 class="my-auto">iPhone 15</h6>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <span class="text-secondary font-weight-bold">123123123</span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="text-secondary font-weight-bold">2</span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="text-secondary font-weight-bold">VND1290</span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="d-flex">
+                                        <button class="btn bg-gradient-primary btn-sm mb-0 me-2" type="button"
+                                            name="button">Edit</button>
+                                        <button class="btn btn-outline-dark btn-sm mb-0" type="button"
+                                            name="button">Remove</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-lg-0 mt-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="font-weight-bolder">Category Information</h5>
+                            <div>
+                                <label for="theme">Theme</label>
+                                <div class="choices" data-type="select-one">
+                                    <select class="form-control" id="theme" name="theme">
+                                        <option value="1">Smart Phone</option>
+                                        <option value="2">Charging Cable</option>
+                                        <option value="3">Backup Charger</option>
+                                        <option value="4">Earphone</option>
+                                        <option value="4">Phone Case</option>
+                                        <option value="4">Screen Protector</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <label for="name">Name</label>
+                                <input class="form-control" type="text" id="name" name="name"
+                                    placeholder="eg. iPhone, Samsung, Anker, Aukey,..." onfocus="focused(this)"
+                                    onfocusout="defocused(this)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer pt-3 ">
+                <div class="container-fluid">
+                    <div class="row align-items-center justify-content-lg-between">
+                        <div class="col-lg-6 mb-lg-0 mb-4">
+                            <div class="copyright text-center text-sm text-muted text-lg-start">
+                                ©
+                                <script>
+                                    document.write(new Date().getFullYear())
+                                </script>,
+                                made with <i class="fa fa-heart"></i> by
+                                <a href="" class="font-weight-bold" target="_blank">STARBOY</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+
+        <!-- Modal Detail -->
+        <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detail-modal"
+            aria-hidden="true">
+            <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="modal-title-default"><b>Verify Account Creation</b></h6>
+                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>After you verify this message, the system will send a link that lasts for <b>1 minute</b>
+                            to use for the
+                            first
+                            login.</p>
+                        <p>Remind them to check their email immediately after you press the confirm button below.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn bg-gradient-success">Confirm</button>
+                        <button type="button" class="btn btn-link  ml-auto" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Edit -->
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="edit-modal"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New message to @CT</h5>
+                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                <input type="text" class="form-control" value="Creative Tim" id="recipient-name">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Message:</label>
+                                <textarea class="form-control" id="message-text"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn bg-gradient-primary">Send message</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Delete -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="delete-modal"
+            aria-hidden="true">
+            <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+                <div class="modal-content">
+                    <div class="modal-body p-4">
+                        <div class="text-center">
+                            <div class="swal2-icon swal2-warning swal2-icon-show"
+                                style="display: flex; margin-top: 15px;">
+                                <div class="swal2-icon-content">!</div>
+                            </div>
+                            <h3 class="font-weight-bolder opacity-9 mt-4">Are you sure?</h3>
+                            <p>You won't be able to revert this!</p>
+                        </div>
+                        <div class="d-flex justify-content-center mt-4">
+                            <button type="button" class="btn btn bg-gradient-success mx-2" data-bs-toggle="modal"
+                                data-bs-target="#successModal" data-bs-dismiss="modal">Yes, Delete it!</button>
+                            <button type="button" class="btn bg-gradient-danger mx-1" data-bs-dismiss="modal">No,
+                                Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Success -->
+        <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="success-modal"
+            aria-hidden="true">
+            <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <div class="swal2-icon swal2-success swal2-icon-show" style="display: flex;">
+                                <div class="swal2-success-circular-line-left"
+                                    style="background-color: rgb(255, 255, 255);"></div>
+                                <span class="swal2-success-line-tip"></span> <span
+                                    class="swal2-success-line-long"></span>
+                                <div class="swal2-success-ring"></div>
+                                <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
+                                <div class="swal2-success-circular-line-right"
+                                    style="background-color: rgb(255, 255, 255);"></div>
+                            </div>
+                            <h3 class="font-weight-bolder opacity-9 mt-4">Deleted!</h3>
+                            <p>Your product has been deleted.</p>
+                        </div>
+                        <div class="d-flex justify-content-center mt-4">
+                            <button type="button" class="btn bg-gradient-info" data-bs-dismiss="modal">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Fail -->
+        <div class="modal fade" id="failModal" tabindex="-1" role="dialog" aria-labelledby="fail-modal"
+            aria-hidden="true">
+            <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <div class="swal2-icon swal2-error swal2-icon-show" style="display: flex;"><span
+                                    class="swal2-x-mark">
+                                    <span class="swal2-x-mark-line-left"></span>
+                                    <span class="swal2-x-mark-line-right"></span>
+                                </span>
+                            </div>
+                            <h3 class="font-weight-bolder opacity-9 mt-4">Failed!</h3>
+                            <p>An error occurred while deleting the product.</p>
+                        </div>
+                        <div class="d-flex justify-content-center mt-4">
+                            <button type="button" class="btn bg-gradient-info" data-bs-dismiss="modal">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!--   Core JS Files   -->
+    <script src="../assets/js/core/popper.min.js"></script>
+    <script src="../assets/js/core/bootstrap.min.js"></script>
+    <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <!-- page script -->
+    <script>
+        var win = navigator.platform.indexOf('Win') > -1;
+        if (win && document.querySelector('#sidenav-scrollbar')) {
+            var options = {
+                damping: '0.5'
+            }
+            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+        }
+    </script>
+
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="../assets/js/soft-ui-dashboard.min.js?v=1.1.1"></script>
+
+    <!-- renderer-process -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- change-screen script -->
+    <script src="../renderer-process/change-screen.renderer.js"></script>
+</body>
+
+</html>

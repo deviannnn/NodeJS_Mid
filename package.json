@@ -1,0 +1,16 @@
+{
+  "name": "source",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Ly Tuan An",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "electron": "^27.1.0",
+    "mongoose": "^8.0.1"
+  }
+}

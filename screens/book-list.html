@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <title>S T A R B O Y</title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <link href="https://db.onlinewebfonts.com/c/7035ead8175cc6b0fe6c460be5baca9a?family=Frisans+W01+Bold"
+        rel="stylesheet">
+    <!-- Nucleo Icons -->
+    <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- CSS Files -->
+    <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
+    <!-- DataTables -->
+    <link rel="stylesheet" href="../assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+</head>
+
+<body class="g-sidenav-show bg-gray-100 g-sidenav-pinned">
+    <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl fixed-start ms-2 "
+        id="sidenav-main">
+        <div class="sidenav-header">
+            <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+                aria-hidden="true" id="iconSidenav"></i>
+            <a class="navbar-brand m-0" href="/" target="_blank">
+                <img src="../assets/img/logo-ct-dark.png" class="navbar-brand-img h-100 mb-2" alt="main_logo">
+                <span class="ms-1"
+                    style="font-family: Frisans W01 Bold; font-size: 23px; color: #cb0c9f">STARBOOK</span>
+            </a>
+        </div>
+        <hr class="horizontal dark mt-0">
+        <div class="collapse navbar-collapse w-auto " id="sidenav-collapse-main">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="change-screen nav-link " href="" data-screen="pos">
+                        <div
+                            class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                                <path
+                                    d="M64 0C46.3 0 32 14.3 32 32V96c0 17.7 14.3 32 32 32h80v32H87c-31.6 0-58.5 23.1-63.3 54.4L1.1 364.1C.4 368.8 0 373.6 0 378.4V448c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V378.4c0-4.8-.4-9.6-1.1-14.4L488.2 214.4C483.5 183.1 456.6 160 425 160H208V128h80c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H64zM96 48H256c8.8 0 16 7.2 16 16s-7.2 16-16 16H96c-8.8 0-16-7.2-16-16s7.2-16 16-16zM64 432c0-8.8 7.2-16 16-16H432c8.8 0 16 7.2 16 16s-7.2 16-16 16H80c-8.8 0-16-7.2-16-16zm48-168a24 24 0 1 1 0-48 24 24 0 1 1 0 48zm120-24a24 24 0 1 1 -48 0 24 24 0 1 1 48 0zM160 344a24 24 0 1 1 0-48 24 24 0 1 1 0 48zM328 240a24 24 0 1 1 -48 0 24 24 0 1 1 48 0zM256 344a24 24 0 1 1 0-48 24 24 0 1 1 0 48zM424 240a24 24 0 1 1 -48 0 24 24 0 1 1 48 0zM352 344a24 24 0 1 1 0-48 24 24 0 1 1 0 48z" />
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">POS</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="change-screen nav-link " href="" data-screen="profile">
+                        <div
+                            class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <img src="../assets/img/team-2.jpg" class="avatar avatar-sm" alt="user image">
+                        </div>
+                        <span class="nav-link-text ms-1">Profile</span>
+                    </a>
+                </li>
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Book Management</h6>
+                </li>
+                <li class="nav-item">
+                    <a class="change-screen nav-link active" href="" data-screen="book-list">
+                        <div
+                            class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                                <path
+                                    d="M448 360V24c0-13.3-10.7-24-24-24H96C43 0 0 43 0 96v320c0 53 43 96 96 96h328c13.3 0 24-10.7 24-24v-16c0-7.5-3.5-14.3-8.9-18.7-4.2-15.4-4.2-59.3 0-74.7 5.4-4.3 8.9-11.1 8.9-18.6zM128 134c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm0 64c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm253.4 250H96c-17.7 0-32-14.3-32-32 0-17.6 14.4-32 32-32h285.4c-1.9 17.1-1.9 46.9 0 64z" />
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">Book List</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="change-screen nav-link " href="" data-screen="new-book">
+                        <div
+                            class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                                <path
+                                    d="M448 358.4V25.6c0-16-9.6-25.6-25.6-25.6H96C41.6 0 0 41.6 0 96v320c0 54.4 41.6 96 96 96h326.4c12.8 0 25.6-9.6 25.6-25.6v-16q0-9.6-9.6-19.2c-3.2-16-3.2-60.8 0-73.6q9.6-4.8 9.6-19.2zM144 168a8 8 0 0 1 8-8h56v-56a8 8 0 0 1 8-8h48a8 8 0 0 1 8 8v56h56a8 8 0 0 1 8 8v48a8 8 0 0 1-8 8h-56v56a8 8 0 0 1-8 8h-48a8 8 0 0 1-8-8v-56h-56a8 8 0 0 1-8-8zm236.8 280H96c-19.2 0-32-12.8-32-32s16-32 32-32h284.8z" />
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">New Book</span>
+                    </a>
+                </li>
+
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">People Management</h6>
+                </li>
+                <li class="nav-item">
+                    <a class="change-screen nav-link " href="" href="" data-screen="staff-list">
+                        <div
+                            class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
+                                <path
+                                    d="M192 0c-41.8 0-77.4 26.7-90.5 64H64C28.7 64 0 92.7 0 128V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64H282.5C269.4 26.7 233.8 0 192 0zm0 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM128 256a64 64 0 1 1 128 0 64 64 0 1 1 -128 0zM80 432c0-44.2 35.8-80 80-80h64c44.2 0 80 35.8 80 80c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16z" />
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">Staff List</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="change-screen nav-link " href="" data-screen="new-staff">
+                        <div
+                            class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                                <path
+                                    d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">New Staff</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="change-screen nav-link " href="" data-screen="customer-list">
+                        <div
+                            class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                                <path
+                                    d="M224 256A128 128 0 1 1 224 0a128 128 0 1 1 0 256zM209.1 359.2l-18.6-31c-6.4-10.7 1.3-24.2 13.7-24.2H224h19.7c12.4 0 20.1 13.6 13.7 24.2l-18.6 31 33.4 123.9 36-146.9c2-8.1 9.8-13.4 17.9-11.3c70.1 17.6 121.9 81 121.9 156.4c0 17-13.8 30.7-30.7 30.7H285.5c-2.1 0-4-.4-5.8-1.1l.3 1.1H168l.3-1.1c-1.8 .7-3.8 1.1-5.8 1.1H30.7C13.8 512 0 498.2 0 481.3c0-75.5 51.9-138.9 121.9-156.4c8.1-2 15.9 3.3 17.9 11.3l36 146.9 33.4-123.9z" />
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">Customer List</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="change-screen nav-link " href="" data-screen="new-customer">
+                        <div
+                            class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512">
+                                <path
+                                    d="M624 208h-64v-64c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v64h-64c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h64v64c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-64h64c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zm-400 48c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z" />
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">New Customer</span>
+                    </a>
+                </li>
+
+                <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Report Management</h6>
+                </li>
+                <li class="nav-item">
+                    <a class="change-screen nav-link " href="" data-screen="sales-results">
+                        <div
+                            class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                                <path
+                                    d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H64C28.7 64 0 92.7 0 128v16 48V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H344V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H152V24zM48 192h80v56H48V192zm0 104h80v64H48V296zm128 0h96v64H176V296zm144 0h80v64H320V296zm80-48H320V192h80v56zm0 160v40c0 8.8-7.2 16-16 16H320V408h80zm-128 0v56H176V408h96zm-144 0v56H64c-8.8 0-16-7.2-16-16V408h80zM272 248H176V192h96v56z" />
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">Sales Results</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="change-screen nav-link " href="" data-screen="cashier-report">
+                        <div
+                            class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
+                                <path
+                                    d="M312 24V34.5c6.4 1.2 12.6 2.7 18.2 4.2c12.8 3.4 20.4 16.6 17 29.4s-16.6 20.4-29.4 17c-10.9-2.9-21.1-4.9-30.2-5c-7.3-.1-14.7 1.7-19.4 4.4c-2.1 1.3-3.1 2.4-3.5 3c-.3 .5-.7 1.2-.7 2.8c0 .3 0 .5 0 .6c.2 .2 .9 1.2 3.3 2.6c5.8 3.5 14.4 6.2 27.4 10.1l.9 .3c11.1 3.3 25.9 7.8 37.9 15.3c13.7 8.6 26.1 22.9 26.4 44.9c.3 22.5-11.4 38.9-26.7 48.5c-6.7 4.1-13.9 7-21.3 8.8V232c0 13.3-10.7 24-24 24s-24-10.7-24-24V220.6c-9.5-2.3-18.2-5.3-25.6-7.8c-2.1-.7-4.1-1.4-6-2c-12.6-4.2-19.4-17.8-15.2-30.4s17.8-19.4 30.4-15.2c2.6 .9 5 1.7 7.3 2.5c13.6 4.6 23.4 7.9 33.9 8.3c8 .3 15.1-1.6 19.2-4.1c1.9-1.2 2.8-2.2 3.2-2.9c.4-.6 .9-1.8 .8-4.1l0-.2c0-1 0-2.1-4-4.6c-5.7-3.6-14.3-6.4-27.1-10.3l-1.9-.6c-10.8-3.2-25-7.5-36.4-14.4c-13.5-8.1-26.5-22-26.6-44.1c-.1-22.9 12.9-38.6 27.7-47.4c6.4-3.8 13.3-6.4 20.2-8.2V24c0-13.3 10.7-24 24-24s24 10.7 24 24zM568.2 336.3c13.1 17.8 9.3 42.8-8.5 55.9L433.1 485.5c-23.4 17.2-51.6 26.5-80.7 26.5H192 32c-17.7 0-32-14.3-32-32V416c0-17.7 14.3-32 32-32H68.8l44.9-36c22.7-18.2 50.9-28 80-28H272h16 64c17.7 0 32 14.3 32 32s-14.3 32-32 32H288 272c-8.8 0-16 7.2-16 16s7.2 16 16 16H392.6l119.7-88.2c17.8-13.1 42.8-9.3 55.9 8.5zM193.6 384l0 0-.9 0c.3 0 .6 0 .9 0z" />
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">Cashier Report</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+        <!-- Navbar -->
+        <nav class="navbar navbar-main navbar-expand-lg position-sticky top-1 px-0 mx-4 border-radius-xl z-index-sticky shadow-none"
+            id="navbarBlur" data-scroll="true">
+            <div class="container-fluid py-1 px-3">
+                <div class="sidenav-toggler sidenav-toggler-inner d-xl-block d-none ">
+                    <a href="javascript:;" class="nav-link p-0 text-body">
+                        <div class="sidenav-toggler-inner">
+                            <i class="sidenav-toggler-line"></i>
+                            <i class="sidenav-toggler-line"></i>
+                            <i class="sidenav-toggler-line"></i>
+                        </div>
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4">
+                    <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                        <div class="input-group">
+                            <span class="input-group-text text-body"><i class="fas fa-search"
+                                    aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" placeholder="Type here..." onfocus="focused(this)"
+                                onfocusout="defocused(this)">
+                        </div>
+                    </div>
+                    <ul class="navbar-nav justify-content-end">
+                        <li class="nav-item d-flex align-items-center">
+                            <a id="log-out-btn" class="nav-link font-weight-bold px-0 text-body">
+                                <i class="fa fa-sign-out me-sm-1" aria-hidden="true"></i>
+                                <span class="d-sm-inline d-none">Log out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- End Navbar -->
+
+        <div class="container-fluid py-3">
+            <!-- content -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card mb-4">
+                        <div class="card-header pb-0">
+                            <div class="d-lg-flex">
+                                <div class="col-12 col-sm-12 col-md-6">
+                                    <h5 class="mb-0">Book table</h5>
+                                </div>
+                                <div class="ms-auto my-auto mt-lg-0 mt-4">
+                                    <div class="ms-auto my-auto">
+                                        <a href="" class="change-screen btn bg-gradient-primary btn-sm mb-0"
+                                            data-screen="new-book">+&nbsp;New Book</a>
+                                        <button type="button" class="btn btn-outline-primary btn-sm mb-0"
+                                            data-bs-toggle="modal" data-bs-target="#import">Import</button>
+                                        <div class="modal fade" id="import" tabindex="-1" style="display: none;"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog mt-lg-10">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="ModalLabel">Import CSV</h5>
+                                                        <i class="fas fa-upload ms-3" aria-hidden="true"></i>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>You can browse your computer for a file.</p>
+                                                        <input type="text" placeholder="Browse file..."
+                                                            class="form-control mb-3" onfocus="focused(this)"
+                                                            onfocusout="defocused(this)">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value=""
+                                                                id="importCheck" checked="">
+                                                            <label class="custom-control-label" for="importCheck">I
+                                                                accept the terms and conditions</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn bg-gradient-secondary btn-sm"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                        <button type="button"
+                                                            class="btn bg-gradient-primary btn-sm">Upload</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-outline-primary btn-sm export mb-0 mt-sm-0 mt-1"
+                                            data-type="csv" type="button" name="button">Export</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body px-0 pt-3 pb-2">
+                            <div class="table-responsive p-0">
+                                <table id="example2" class="table align-items-center mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder">
+                                                Book</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">
+                                                Category</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">
+                                                Price</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">
+                                                Display</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">
+                                                Quantity</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">
+                                                Status</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <img src="../assets/img/therichestmaninbabylon.png" alt="off_white"
+                                                        style="width: 75px; height: 100px">
+                                                    <h6 class="ms-3 my-auto">The richest man in babylon</h6>
+                                                </div>
+                                            </td>
+                                            <td class="text-sm">Finance</td>
+                                            <td class="text-sm">57K</td>
+                                            <td class="text-sm">3</td>
+                                            <td class="text-sm">40</td>
+                                            <td class="text-center">
+                                                <span class="badge badge-success badge-sm">in Stock</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <!-- <a href="javascript:;" data-bs-toggle="tooltip"
+                                                                data-bs-original-title="Preview product">
+                                                                <i class="fas fa-eye text-secondary" aria-hidden="true"></i>
+                                                            </a>
+                                                            <a href="javascript:;" class="mx-3" data-bs-toggle="tooltip"
+                                                                data-bs-original-title="Edit product">
+                                                                <i class="fas fa-user-edit text-secondary" aria-hidden="true"></i>
+                                                            </a>
+                                                            <a href="javascript:;" data-bs-toggle="tooltip"
+                                                                data-bs-original-title="Delete product">
+                                                                <i class="fas fa-trash text-secondary" aria-hidden="true"></i>
+                                                            </a> -->
+                                                <button type="button" class="detail" data-bs-toggle="modal"
+                                                    data-bs-target="#detailModal"
+                                                    style="border: 0; background-color: transparent;">
+                                                    <i class="fas fa-eye text-secondary" aria-hidden="true"></i>
+                                                </button>
+                                                <a href="/pages/edit-product.html" class="mx-3" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Edit product">
+                                                    <i class="fas fa-user-edit text-secondary" aria-hidden="true"></i>
+                                                </a>
+                                                <button type="button" class="delete" data-bs-toggle="modal"
+                                                    data-bs-target="#deleteModal"
+                                                    style="border: 0; background-color: transparent;">
+                                                    <i class="fas fa-trash text-secondary" aria-hidden="true"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <img src="../assets/img/richdadpoordad.png" alt="off_white"
+                                                        style="width: 75px; height: 100px">
+                                                    <h6 class="ms-3 my-auto">Rich dad poor dad</h6>
+                                                </div>
+                                            </td>
+                                            <td class="text-sm">Finance</td>
+                                            <td class="text-sm">89K</td>
+                                            <td class="text-sm">3</td>
+                                            <td class="text-sm">40</td>
+                                            <td class="text-center">
+                                                <span class="badge badge-danger badge-sm">out of Stock</span>
+                                            </td>
+                                            <td class="text-center">
+                                                <!-- <a href="javascript:;" data-bs-toggle="tooltip"
+                                                                data-bs-original-title="Preview product">
+                                                                <i class="fas fa-eye text-secondary" aria-hidden="true"></i>
+                                                            </a>
+                                                            <a href="javascript:;" class="mx-3" data-bs-toggle="tooltip"
+                                                                data-bs-original-title="Edit product">
+                                                                <i class="fas fa-user-edit text-secondary" aria-hidden="true"></i>
+                                                            </a>
+                                                            <a href="javascript:;" data-bs-toggle="tooltip"
+                                                                data-bs-original-title="Delete product">
+                                                                <i class="fas fa-trash text-secondary" aria-hidden="true"></i>
+                                                            </a> -->
+                                                <button type="button" class="detail" data-bs-toggle="modal"
+                                                    data-bs-target="#detailModal"
+                                                    style="border: 0; background-color: transparent;">
+                                                    <i class="fas fa-eye text-secondary" aria-hidden="true"></i>
+                                                </button>
+                                                <a href="/pages/edit-product.html" class="mx-3" data-bs-toggle="tooltip"
+                                                    data-bs-original-title="Edit product">
+                                                    <i class="fas fa-user-edit text-secondary" aria-hidden="true"></i>
+                                                </a>
+                                                <button type="button" class="delete" data-bs-toggle="modal"
+                                                    data-bs-target="#deleteModal"
+                                                    style="border: 0; background-color: transparent;">
+                                                    <i class="fas fa-trash text-secondary" aria-hidden="true"></i>
+                                                </button>
+                                                <button type="button" class="delete" data-bs-toggle="modal"
+                                                    data-bs-target="#failModal"
+                                                    style="border: 0; background-color: transparent;">
+                                                    fail
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer pt-3 ">
+                <div class="container-fluid">
+                    <div class="row align-items-center justify-content-lg-between">
+                        <div class="col-lg-6 mb-lg-0 mb-4">
+                            <div class="copyright text-center text-sm text-muted text-lg-start">
+                                ©
+                                <script>
+                                    document.write(new Date().getFullYear())
+                                </script>,
+                                made with <i class="fa fa-heart"></i> by
+                                <a href="" class="font-weight-bold" target="_blank">STARBOY</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+
+        <!-- Modal Detail -->
+        <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detail-modal"
+            aria-hidden="true">
+            <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="modal-title-default"><b>Verify Account Creation</b></h6>
+                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>After you verify this message, the system will send a link that lasts for <b>1 minute</b>
+                            to use for the
+                            first
+                            login.</p>
+                        <p>Remind them to check their email immediately after you press the confirm button below.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn bg-gradient-success">Confirm</button>
+                        <button type="button" class="btn btn-link  ml-auto" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Edit -->
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="edit-modal"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New message to @CT</h5>
+                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                <input type="text" class="form-control" value="Creative Tim" id="recipient-name">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Message:</label>
+                                <textarea class="form-control" id="message-text"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn bg-gradient-primary">Send message</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Delete -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="delete-modal"
+            aria-hidden="true">
+            <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+                <div class="modal-content">
+                    <div class="modal-body p-4">
+                        <div class="text-center">
+                            <div class="swal2-icon swal2-warning swal2-icon-show"
+                                style="display: flex; margin-top: 15px;">
+                                <div class="swal2-icon-content">!</div>
+                            </div>
+                            <h3 class="font-weight-bolder opacity-9 mt-4">Are you sure?</h3>
+                            <p>You won't be able to revert this!</p>
+                        </div>
+                        <div class="d-flex justify-content-center mt-4">
+                            <button type="button" class="btn btn bg-gradient-success mx-2" data-bs-toggle="modal"
+                                data-bs-target="#successModal" data-bs-dismiss="modal">Yes, Delete it!</button>
+                            <button type="button" class="btn bg-gradient-danger mx-1" data-bs-dismiss="modal">No,
+                                Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Success -->
+        <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="success-modal"
+            aria-hidden="true">
+            <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <div class="swal2-icon swal2-success swal2-icon-show" style="display: flex;">
+                                <div class="swal2-success-circular-line-left"
+                                    style="background-color: rgb(255, 255, 255);"></div>
+                                <span class="swal2-success-line-tip"></span> <span
+                                    class="swal2-success-line-long"></span>
+                                <div class="swal2-success-ring"></div>
+                                <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
+                                <div class="swal2-success-circular-line-right"
+                                    style="background-color: rgb(255, 255, 255);"></div>
+                            </div>
+                            <h3 class="font-weight-bolder opacity-9 mt-4">Deleted!</h3>
+                            <p>Your product has been deleted.</p>
+                        </div>
+                        <div class="d-flex justify-content-center mt-4">
+                            <button type="button" class="btn bg-gradient-info" data-bs-dismiss="modal">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Fail -->
+        <div class="modal fade" id="failModal" tabindex="-1" role="dialog" aria-labelledby="fail-modal"
+            aria-hidden="true">
+            <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <div class="swal2-icon swal2-error swal2-icon-show" style="display: flex;"><span
+                                    class="swal2-x-mark">
+                                    <span class="swal2-x-mark-line-left"></span>
+                                    <span class="swal2-x-mark-line-right"></span>
+                                </span>
+                            </div>
+                            <h3 class="font-weight-bolder opacity-9 mt-4">Failed!</h3>
+                            <p>An error occurred while deleting the product.</p>
+                        </div>
+                        <div class="d-flex justify-content-center mt-4">
+                            <button type="button" class="btn bg-gradient-info" data-bs-dismiss="modal">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!--   Core JS Files   -->
+    <script src="../assets/js/core/popper.min.js"></script>
+    <script src="../assets/js/core/bootstrap.min.js"></script>
+    <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <!-- page script -->
+    <script>
+        var win = navigator.platform.indexOf('Win') > -1;
+        if (win && document.querySelector('#sidenav-scrollbar')) {
+            var options = {
+                damping: '0.5'
+            }
+            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- DataTables -->
+    <script src="../assets/plugins/jquery/jquery.min.js"></script>
+    <script src="../assets/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="../assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <script>
+        $(function () {
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+            });
+        });
+    </script>
+
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="../assets/js/soft-ui-dashboard.min.js?v=1.1.1"></script>
+
+    <!-- renderer-process -->
+    <!-- change-screen script -->
+    <script src="../renderer-process/change-screen.renderer.js"></script>
+</body>
+
+</html>
