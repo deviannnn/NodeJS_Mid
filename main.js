@@ -27,6 +27,7 @@ function createWindow() {
             preload: path.join(__dirname, "preload.js"),
         },
     });
+
     win.maximize();
 
     ipcMain.on('go-to-screen', (event, screen) => {

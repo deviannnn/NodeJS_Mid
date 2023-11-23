@@ -376,6 +376,12 @@ tr {
     border-width: 0
 }
 
+tbody img {
+    width: 37.5px;
+    height: 50px;
+    margin-left: 13px
+}
+
 label {
     display: inline-block
 }
@@ -23047,7 +23053,7 @@ html {
     }
 
     .sidenav.fixed-start~.main-content {
-        margin-left: 17.125rem
+        margin-left: 16.125rem
     }
 
     .sidenav.fixed-end~.main-content {
