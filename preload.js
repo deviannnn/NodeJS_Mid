@@ -5,5 +5,8 @@ contextBridge.exposeInMainWorld('changeScreenAPI', {
 });
 
 contextBridge.exposeInMainWorld('bookAPI', {
-  getBook: () => ipcRenderer.invoke('get-books'),
+  get: () => ipcRenderer.invoke('get-books'),
+  add: (data) => ipcRenderer.invoke('add-book', data),
+  chooseImage: () => ipcRenderer.invoke('choose-img-book'),
+  checkBarcode: (barcode) => ipcRenderer.invoke('check-barcode', barcode),
 });

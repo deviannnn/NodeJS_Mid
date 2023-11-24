@@ -11,6 +11,7 @@
   "dependencies": {
     "dotenv": "^16.3.1",
     "electron": "^27.1.0",
+    "jsbarcode": "^3.11.6",
     "mongoose": "^8.0.1"
   }
 }
