@@ -10,6 +10,7 @@ contextBridge.exposeInMainWorld('bookAPI', {
   add: (data) => ipcRenderer.invoke('add-book', data),
   edit: (data) => ipcRenderer.invoke('edit-book', data),
   delete: (barcode) => ipcRenderer.invoke('delete-book', barcode),
+  import: (data) => ipcRenderer.invoke('import-book', data),
   find: (keyword) => ipcRenderer.invoke('find-book', keyword),
   chooseImage: () => ipcRenderer.invoke('choose-img-book'),
   checkBarcode: (barcode) => ipcRenderer.invoke('check-barcode', barcode),

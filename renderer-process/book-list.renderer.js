@@ -67,6 +67,7 @@ let currentBarcode = '';
 $('tbody').on('click', '.print, .detail, .edit, .delete, .import', function () {
     const row = $(this).closest('tr');
     const title = row.find('td:eq(0)').text();
+    const quantity = row.find('td:eq(3)').text();
     currentBarcode = row.find('td:eq(1)').text();
 
     switch (true) {
@@ -88,11 +89,11 @@ $('tbody').on('click', '.print, .detail, .edit, .delete, .import', function () {
             break;
 
         case $(this).hasClass('import'):
-            $('#importModal').modal('show');
+            getAndShowBook('import');
             break;
 
         case $(this).hasClass('delete'):
-            $('#del-title-book').text(`(${title})`);
+            $('.del-title-book').text(`(${title})`);
             $('#deleteModal').modal('show');
             break;
 
@@ -100,6 +101,34 @@ $('tbody').on('click', '.print, .detail, .edit, .delete, .import', function () {
             break;
     }
 });
+
+function getAndShowBook(modal) {
+    if (currentBarcode !== '') {
+        window.bookAPI.get(currentBarcode)
+            .then((response) => {
+                if (response.success) {
+                    const book = response.book._doc;
+                    if (modal === 'detail') {
+                        displayBookDetail(book);
+                    } else if (modal === 'edit') {
+                        displayBookEdit(book);
+                    } else {
+                        displayBookImport(book);
+                    }
+                } else {
+                    $('#message-modal-fail').text(response.message)
+                    $('#failModal').modal('show');
+                }
+            })
+            .catch((error) => {
+                $('#message-modal-fail').text('Something went wrong. Please try again later!')
+                $('#failModal').modal('show');
+            });
+    } else {
+        $('#message-modal-fail').text('No book has been selected to see detail yet.')
+        $('#failModal').modal('show');
+    }
+}
 
 // Delete module
 $('#confirm-del-btn').on('click', onConfirmDelButtonClick);
@@ -127,17 +156,53 @@ function onConfirmDelButtonClick() {
     }
 }
 
-function getAndShowBook(modal) {
-    if (currentBarcode !== '') {
-        window.bookAPI.get(currentBarcode)
+// Import module 
+function displayBookImport(book) {
+    $('#import-img-book').attr('src', `../assets/uploads/book/${book.img}`);
+    $('#import-current-quantity').text(book.quantity);
+    $('#import-quantity').val('');
+    $('#import-quantity').removeClass('is-invalid');
+    $('#importModal').modal('show');
+}
+
+function validateImport(value) {
+    if (!/^\d+$/.test(value) || value === null || value <= 0) {
+        $('#message-modal-fail').text('Input must be a number greater than 0.')
+        $('#import-quantity').addClass('is-invalid');
+        $('#failModal').modal('show');
+    } else if (value > 200) {
+        $('#message-modal-fail').text('Quantity is too much.')
+        $('#import-quantity').addClass('is-invalid');
+        $('#failModal').modal('show');
+    } else {
+        return true;
+    }
+}
+
+$('#import-quantity').on('focus', () => {
+    $('#import-quantity').removeClass('is-invalid');
+})
+
+$('#next-import-btn').on('click', () => {
+    const importQuantity = getValue('#import-quantity');
+    if (validateImport(importQuantity)) {
+        $('.import-quantity').text(importQuantity);
+        $('#confirmImportModal').modal('show');
+    }
+});
+
+$('#confirm-import-btn').on('click', onConfirmImportButtonClick);
+
+function onConfirmImportButtonClick() {
+    const importQuantity = getValue('#import-quantity');
+    if (validateImport(importQuantity)) {
+        console.log({ barcode: currentBarcode, quantity: importQuantity });
+        window.bookAPI.import({ barcode: currentBarcode, quantity: importQuantity })
             .then((response) => {
                 if (response.success) {
-                    const book = response.book._doc;
-                    if (modal === 'detail') {
-                        displayBookDetail(book);
-                    } else {
-                        displayBookEdit(book);
-                    }
+                    $('#modal-success-title').text('Imported!');
+                    $('#modal-success-msg').text('Your book has been imported.');
+                    $('#successModal').modal('show');
                 } else {
                     $('#message-modal-fail').text(response.message)
                     $('#failModal').modal('show');
@@ -148,7 +213,7 @@ function getAndShowBook(modal) {
                 $('#failModal').modal('show');
             });
     } else {
-        $('#message-modal-fail').text('No book has been selected to see detail yet.')
+        $('#message-modal-fail').text('No book has been selected to delete yet.')
         $('#failModal').modal('show');
     }
 }
@@ -206,7 +271,7 @@ $('#confirm-edit-btn').on('click', onConfirmEditButtonClick);
 
 $('#edit-img-btn').on('click', onEditImgButtonClick);
 
-$('#next-btn').on('click', onNextButtonClick);
+$('#next-edit-btn').on('click', onNextEditButtonClick);
 
 $('#remove-img-btn').on('click', function () {
     $('#img').val('');
@@ -276,7 +341,7 @@ function onEditImgButtonClick() {
         });
 }
 
-async function onNextButtonClick() {
+async function onNextEditButtonClick() {
     const isValid = await validateAllFields();
     if (isValid) {
         $('#previewModal').modal('show');

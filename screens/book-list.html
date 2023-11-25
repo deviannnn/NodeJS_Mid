@@ -354,7 +354,7 @@
                             <div class="col-4 text-center">
                                 <h6>Book Image</h6>
                                 <img id="detail-img-book" class="w-100" alt="product_image"
-                                    src="../assets/img/default-book.png" style="height: 200px;">
+                                    src="../assets/img/default-book.png" style="height: 250px;">
                                 <svg class="barcode-preview w-80 h-80"></svg>
                             </div>
                             <div class="col-8 text-center">
@@ -396,7 +396,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn bg-gradient-secondary ml-auto" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn bg-gradient-secondary ml-auto"
+                            data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
@@ -417,7 +418,7 @@
                             <div class="col-4 text-center">
                                 <h6>Book Image</h6>
                                 <img id="preview" class="w-100" alt="product_image" src="../assets/img/default-book.png"
-                                    style="height: 200px;">
+                                    style="height: 300px;">
                                 <input class="form-control" type="text" id="img" hidden disabled>
                                 <div class="d-flex ms-2 mt-4">
                                     <button class="btn bg-gradient-primary btn-sm mb-0 me-2" type="button"
@@ -458,12 +459,12 @@
                                         <input class="form-control" type="text" id="author" placeholder="Book's Author"
                                             maxlength="30">
                                     </div>
-                                    <div class="col-8 mt-2">
+                                    <div class="col-9 mt-2">
                                         <label for="publisher">Publisher</label>
                                         <input class="form-control" type="text" id="publisher"
                                             placeholder="Book's Publisher" maxlength="30">
                                     </div>
-                                    <div class="col-4 mt-2">
+                                    <div class="col-3 mt-2">
                                         <div class="form-group">
                                             <label for="year" class="form-control-label">Year</label>
                                             <input class="form-control" type="text" id="year" placeholder="Year"
@@ -492,7 +493,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn bg-gradient-dark" id="next-btn">Next</button>
+                        <button type="button" class="btn bg-gradient-dark" id="next-edit-btn">Next</button>
                     </div>
                     <!-- Modal Preview Barcode -->
                     <div class="modal fade" id="previewModal" tabindex="-1" role="dialog"
@@ -538,20 +539,52 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                <input type="text" class="form-control" value="Creative Tim" id="recipient-name">
+                        <div class="row">
+                            <div class="col-4 text-center">
+                                <img id="import-img-book" class="w-100" alt="product_image"
+                                    src="../assets/img/default-book.png" style="height: 200px;">
                             </div>
-                            <div class="form-group">
-                                <label for="message-text" class="col-form-label">Message:</label>
-                                <textarea class="form-control" id="message-text"></textarea>
+                            <div class="col-8">
+                                <div class="row ms-3">
+                                    <div class="col-12 d-flex">
+                                        <h6 class="me-2">Current Quantity:</h6><span
+                                            id="import-current-quantity"></span>
+                                    </div>
+                                    <div class="col-12 d-flex mt-3">
+                                        <h6 class="me-2 mt-2">Import Quantity:</h6>
+                                        <input type="number" class="form-control text-lg w-50" id="import-quantity"
+                                            min="1" max="200">
+                                    </div>
+                                </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn bg-gradient-primary">Send message</button>
+                        <button type="button" class="btn bg-gradient-dark" id="next-import-btn">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Confirm Import -->
+        <div class="modal fade" id="confirmImportModal" tabindex="-1" role="dialog" aria-labelledby="delete-modal"
+            aria-hidden="true">
+            <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+                <div class="modal-content">
+                    <div class="modal-body p-4">
+                        <div class="text-center">
+                            <div class="swal2-icon swal2-info swal2-icon-show" style="display: flex; margin-top: 15px;">
+                                <div class="swal2-icon-content">?</div>
+                            </div>
+                            <h3 class="font-weight-bolder opacity-9 mt-4">Are you sure?</h3>
+                            <p>The number of these books will add <span class="import-quantity text-bolder"></span></p>
+                        </div>
+                        <div class="d-flex justify-content-center mt-4">
+                            <button type="button" class="btn btn bg-gradient-success mx-2" data-bs-dismiss="modal"
+                                id="confirm-import-btn">Yes!</button>
+                            <button type="button" class="btn bg-gradient-danger mx-1" data-bs-dismiss="modal">No,
+                                Cancel</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -568,12 +601,11 @@
                                 <div class="swal2-icon-content">!</div>
                             </div>
                             <h3 class="font-weight-bolder opacity-9 mt-4">Are you sure?</h3>
-                            <p>You won't be able to revert this <span id="del-title-book"></span>!</p>
+                            <p>You won't be able to revert this <span class="del-title-book text-bolder"></span>!</p>
                         </div>
                         <div class="d-flex justify-content-center mt-4">
                             <button type="button" class="btn btn bg-gradient-success mx-2" data-bs-toggle="modal"
-                                data-bs-target="#successModal" data-bs-dismiss="modal" id="confirm-del-btn">Yes, Delete
-                                it!</button>
+                                id="confirm-del-btn">Yes, Delete it!</button>
                             <button type="button" class="btn bg-gradient-danger mx-1" data-bs-dismiss="modal">No,
                                 Cancel</button>
                         </div>

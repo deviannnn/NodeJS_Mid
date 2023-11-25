@@ -73,6 +73,45 @@ ipcMain.handle('add-book', async (event, data) => {
     }
 });
 
+ipcMain.handle('import-book', async (event, data) => {
+    try {
+        const existingBook = await Book.findOne({ barcode: data.barcode });
+
+        if (!existingBook) {
+            return { success: false, message: 'Book not found.' };
+        }
+        
+        const currentQuantity = parseInt(existingBook.quantity, 10);
+        const importQuantity = parseInt(data.quantity, 10);
+        const updatedQuantity = currentQuantity + importQuantity;
+
+        const updatedBook = await Book.findOneAndUpdate(
+            { barcode: data.barcode },
+            {
+                $set: {
+                    quantity: updatedQuantity,
+                    updated: new Date()
+                }
+            },
+            { new: true }
+        );
+
+        if (!updatedBook) {
+            return { success: false, message: 'Failed to update book quantity.' };
+        }
+
+        const statusUpdateResult = await updateStatus(data.barcode, updatedQuantity);
+
+        if (!statusUpdateResult.success) {
+            return statusUpdateResult;
+        }
+
+        return { success: true };
+    } catch (error) {
+        return { success: false, message: error.message };
+    }
+});
+
 ipcMain.handle('edit-book', async (event, data) => {
     try {
         const existingBook = await Book.findOne({ barcode: data.barcode });
@@ -138,6 +177,29 @@ ipcMain.handle('check-barcode', async (event, barcode) => {
         return { success: false, message: error.message };
     }
 });
+
+async function updateStatus(bookBarcode, quantity) {
+    try {
+        const newStatus =
+            quantity > 5 ? 'in stock' :
+                quantity > 0 ? 'warning' :
+                    'out of stock';
+
+        const updatedStatusBook = await Book.findOneAndUpdate(
+            { barcode: bookBarcode },
+            { $set: { status: newStatus } },
+            { new: true }
+        );
+
+        if (!updatedStatusBook) {
+            return { success: false, message: 'Book not found.' };
+        }
+
+        return { success: true };
+    } catch (error) {
+        return { success: false, message: error.message };
+    }
+}
 
 async function copyFileToDirectory(sourcePath, targetDirectory) {
     try {
