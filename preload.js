@@ -5,8 +5,12 @@ contextBridge.exposeInMainWorld('changeScreenAPI', {
 });
 
 contextBridge.exposeInMainWorld('bookAPI', {
-  get: () => ipcRenderer.invoke('get-books'),
+  getAll: () => ipcRenderer.invoke('get-all-book'),
+  get: (barcode) => ipcRenderer.invoke('get-book', barcode),
   add: (data) => ipcRenderer.invoke('add-book', data),
+  edit: (data) => ipcRenderer.invoke('edit-book', data),
+  delete: (barcode) => ipcRenderer.invoke('delete-book', barcode),
+  find: (keyword) => ipcRenderer.invoke('find-book', keyword),
   chooseImage: () => ipcRenderer.invoke('choose-img-book'),
   checkBarcode: (barcode) => ipcRenderer.invoke('check-barcode', barcode),
 });

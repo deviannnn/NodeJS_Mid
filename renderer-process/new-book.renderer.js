@@ -30,24 +30,13 @@ $('#title, #author, #publisher, #price, #barcode').on('input', function () {
     validateInput($(this));
 });
 
-$('#next-button').on('click', onNextButtonClick);
+$('#next-btn').on('click', onNextButtonClick);
 
-$('#confirm-button').on('click', onConfirmButtonClick);
+$('#confirm-btn').on('click', onConfirmButtonClick);
 
-$('#editBtn').on('click', function () {
-    window.bookAPI.chooseImage()
-        .then(({ filePath, base64Image }) => {
-            $('#img').val(filePath);
+$('#edit-img-btn').on('click', onEditImgButtonClick);
 
-            $('#preview').attr('src', base64Image);
-        })
-        .catch((error) => {
-            $('#img').val('');
-            $('#preview').attr('src', '../assets/img/default-book.png');
-        });
-});
-
-$('#removeBtn').on('click', function () {
+$('#remove-img-btn').on('click', function () {
     $('#img').val('');
     $('#preview').attr('src', '../assets/img/default-book.png');
 });
@@ -87,18 +76,31 @@ async function onConfirmButtonClick() {
                 if (response.success) {
                     $('#successModal').modal('show');
                 } else {
+                    $('#message-modal-fail').text(response.message)
                     $('#failModal').modal('show');
-                    $('#message-modal-fail').text(response.error)
                 }
             })
             .catch((error) => {
-                $('#failModal').modal('show');
                 $('#message-modal-fail').text('Something went wrong. Please try again later!')
+                $('#failModal').modal('show');
             });
     } else {
         $('#message-modal-fail').text('Please correct invalid fields')
         $('#failModal').modal('show');
     }
+}
+
+function onEditImgButtonClick() {
+    window.bookAPI.chooseImage()
+        .then(({ filePath, base64Image }) => {
+            $('#img').val(filePath);
+
+            $('#preview').attr('src', base64Image);
+        })
+        .catch((error) => {
+            $('#img').val('');
+            $('#preview').attr('src', '../assets/img/default-book.png');
+        });
 }
 
 async function validateAllFields() {
@@ -109,7 +111,6 @@ async function validateAllFields() {
         if (check === false) {
             countError++;
         }
-        console.log(field, check)
     }
     if (countError > 0) {
         return false;
@@ -121,13 +122,12 @@ async function validateInput(input) {
     const value = input.val().trim();
 
     if (input.is('#barcode')) {
-        const check = await existBarcode($('#barcode').val());
+        const check = await existBarcode(value);
         if (!check) {
             input.removeClass('is-invalid').addClass('is-valid');
         } else {
             input.removeClass('is-valid').addClass('is-invalid');
         }
-        console.log(check)
         return !check;
     }
     if (value.length === 0 || (input.is('#author, #publisher') && !/^[a-zA-Z\s]+$/.test(value)) || (input.is('#price') && !/^\d+$/.test(value))) {

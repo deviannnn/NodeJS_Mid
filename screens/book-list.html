@@ -21,6 +21,9 @@
     <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
     <!-- DataTables -->
     <link rel="stylesheet" href="../assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+    <!-- Bootstrap Datepicker CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 </head>
 
 <body class="g-sidenav-show bg-gray-100 g-sidenav-pinned">
@@ -216,6 +219,9 @@
                             <div class="d-lg-flex">
                                 <div class="col-12 col-sm-12 col-md-6">
                                     <h5 class="mb-0">Book table</h5>
+                                    <p class="text-sm mb-0">
+                                        Tip: clicking on the <b>barcode</b> if you need to print them
+                                    </p>
                                 </div>
                                 <div class="ms-auto my-auto mt-lg-0 mt-4">
                                     <div class="ms-auto my-auto">
@@ -260,7 +266,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body px-0 pt-3 pb-2">
+                        <div class="card-body px-0 pt-0 pb-2">
                             <div class="table-responsive p-0">
                                 <table id="example2" class="table align-items-center mb-0">
                                     <thead>
@@ -268,49 +274,19 @@
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder">
                                                 Book</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">
-                                                Category</th>
+                                                Barcode</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">
                                                 Price</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">
-                                                Display</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">
                                                 Quantity</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">
                                                 Status</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">
+                                                Updated Date</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <img src="../assets/img/therichestmaninbabylon.png" alt="off_white">
-                                                    <h6 class="ms-3">The richest man in babylon</h6>
-                                                </div>
-                                            </td>
-                                            <td class="text-sm">Finance</td>
-                                            <td class="text-sm">57K</td>
-                                            <td class="text-sm">3</td>
-                                            <td class="text-sm">40</td>
-                                            <td class="text-center">
-                                                <span class="badge badge-success badge-sm">in stock</span>
-                                            </td>
-                                            <td class="text-center">
-                                                <a class="me-3 detail" data-bs-toggle="modal" data-bs-target="#detailModal">
-                                                    <i class="fas fa-eye text-secondary" aria-hidden="true"></i>
-                                                </a>
-                                                <a class="me-3 edit" data-bs-toggle="modal" data-bs-target="#editModal">
-                                                    <i class="fas fa-user-edit text-secondary" aria-hidden="true"></i>
-                                                </a>
-                                                <a class="me-3 import" data-bs-toggle="modal" data-bs-target="#importModal">
-                                                    <i class="fas fa-cart-arrow-down text-secondary"
-                                                        aria-hidden="true"></i>
-                                                </a>
-                                                <a class="delete" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                                                    <i class="fas fa-trash text-secondary" aria-hidden="true"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
 
                                     </tbody>
                                 </table>
@@ -338,39 +314,225 @@
             </footer>
         </div>
 
-
-        <!-- Modal Detail -->
-        <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detail-modal"
+        <!-- Modal Print Barcode -->
+        <div class="modal fade" id="printModal" tabindex="-1" role="dialog" aria-labelledby="modal-default"
             aria-hidden="true">
             <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h6 class="modal-title" id="modal-title-default"><b>Verify Account Creation</b></h6>
+                        <h6 class="modal-title"><b>Print This Barcode</b>
+                        </h6>
+                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <svg class="barcode-preview"></svg>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn bg-gradient-success" id="confirm-print-btn"
+                            data-bs-dismiss="modal">Confirm</button>
+                        <button type="button" class="btn bg-gradient-secondary ml-auto"
+                            data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Detail -->
+        <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detail-modal"
+            aria-hidden="true" style="--bs-modal-width: 600px;">
+            <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-bolder">Book Detail</h5>
                         <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>After you verify this message, the system will send a link that lasts for <b>1 minute</b>
-                            to use for the
-                            first
-                            login.</p>
-                        <p>Remind them to check their email immediately after you press the confirm button below.</p>
+                        <div class="row">
+                            <div class="col-4 text-center">
+                                <h6>Book Image</h6>
+                                <img id="detail-img-book" class="w-100" alt="product_image"
+                                    src="../assets/img/default-book.png" style="height: 200px;">
+                                <svg class="barcode-preview w-80 h-80"></svg>
+                            </div>
+                            <div class="col-8 text-center">
+                                <h6>Book Information</h6>
+                                <div class="row ms-3">
+                                    <div class="col-12 d-flex">
+                                        <h6 class="me-2">Category:</h6><span id="detail-category-book"></span>
+                                    </div>
+                                    <div class="col-12 d-flex">
+                                        <h6 class="me-2">Title:</h6><span id="detail-title-book"></span>
+                                    </div>
+                                    <div class="col-12 d-flex">
+                                        <h6 class="me-2">Author:</h6><span id="detail-author-book"></span>
+                                    </div>
+                                    <div class="col-12 d-flex">
+                                        <h6 class="me-2">Publisher:</h6><span id="detail-pblisher-book"></span>
+                                    </div>
+                                    <div class="col-12 d-flex">
+                                        <h6 class="me-2">Year:</h6><span id="detail-year-book"></span>
+                                    </div>
+                                    <div class="col-12 d-flex">
+                                        <h6 class="me-2">Price:</h6><span id="detail-price-book"></span>
+                                    </div>
+                                    <div class="col-12 d-flex">
+                                        <h6 class="me-2">Quantity:</h6><span id="detail-quantity-book"></span>
+                                    </div>
+                                    <div class="col-12 d-flex">
+                                        <h6 class="m-0 me-2">Status:</h6><span id="detail-status-book"
+                                            class="pt-2"></span>
+                                    </div>
+                                    <div class="col-12 mt-2 d-flex">
+                                        <h6 class="me-2">Created Date:</h6><span id="detail-created-book"></span>
+                                    </div>
+                                    <div class="col-12 d-flex">
+                                        <h6 class="me-2">Updated Date:</h6><span id="detail-updated-book"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn bg-gradient-success">Confirm</button>
-                        <button type="button" class="btn btn-link  ml-auto" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn bg-gradient-secondary ml-auto" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Modal Edit -->
         <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="edit-modal"
+            aria-hidden="true" style="--bs-modal-width: 800px;">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-bolder">Edit Book</h5>
+                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-4 text-center">
+                                <h6>Book Image</h6>
+                                <img id="preview" class="w-100" alt="product_image" src="../assets/img/default-book.png"
+                                    style="height: 200px;">
+                                <input class="form-control" type="text" id="img" hidden disabled>
+                                <div class="d-flex ms-2 mt-4">
+                                    <button class="btn bg-gradient-primary btn-sm mb-0 me-2" type="button"
+                                        id="edit-img-btn">Edit</button>
+                                    <button class="btn btn-outline-dark btn-sm mb-0" type="button"
+                                        id="remove-img-btn">Remove</button>
+                                </div>
+                            </div>
+                            <div class="col-8">
+                                <h6 class="text-center">Book Information</h6>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label for="category">Category</label>
+                                        <div class="choices" data-type="select-one">
+                                            <select class="form-control" id="category">
+                                                <option value="Novel">Novel</option>
+                                                <option value="Business">Business</option>
+                                                <option value="Finance">Finance</option>
+                                                <option value="Science">Science</option>
+                                                <option value="SelfHelp">Self-Help</option>
+                                                <option value="Psychology">Psychology</option>
+                                                <option value="History">History</option>
+                                                <option value="MathComputerScience">Mathematics & Computer Science
+                                                </option>
+                                                <option value="TravelAdventure">Travel & Adventure</option>
+                                                <option value="MusicArt">Music & Art</option>
+                                                <option value="HealthFitness">Health & Fitness</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mt-2">
+                                        <label for="title">Title</label>
+                                        <input class="form-control" type="text" id="title" placeholder="Book's Title"
+                                            maxlength="60">
+                                    </div>
+                                    <div class="col-12 mt-2">
+                                        <label for="author">Author</label>
+                                        <input class="form-control" type="text" id="author" placeholder="Book's Author"
+                                            maxlength="30">
+                                    </div>
+                                    <div class="col-8 mt-2">
+                                        <label for="publisher">Publisher</label>
+                                        <input class="form-control" type="text" id="publisher"
+                                            placeholder="Book's Publisher" maxlength="30">
+                                    </div>
+                                    <div class="col-4 mt-2">
+                                        <div class="form-group">
+                                            <label for="year" class="form-control-label">Year</label>
+                                            <input class="form-control" type="text" id="year" placeholder="Year"
+                                                value="2023" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-5 mt-0">
+                                        <label for="barcode">Barcode (auto or custom)</label>
+                                        <input class="form-control" type="text" id="barcode" maxlength="20">
+                                    </div>
+                                    <div class="col-7 mt-0">
+                                        <label for="price">Price</label>
+                                        <div class="d-flex">
+                                            <span class="input-group-text"
+                                                style="border-top-right-radius: 0; border-bottom-right-radius: 0">VND</span>
+                                            <input class="form-control" type="text" id="price"
+                                                placeholder="eg. 10 ≡ 10000 VND"
+                                                style="border-radius: 0; border-right: 0; border-left: 0; z-index: 1; text-align: end">
+                                            <span class="input-group-text"
+                                                style="border-top-left-radius: 0; border-bottom-left-radius: 0">.000</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn bg-gradient-dark" id="next-btn">Next</button>
+                    </div>
+                    <!-- Modal Preview Barcode -->
+                    <div class="modal fade" id="previewModal" tabindex="-1" role="dialog"
+                        aria-labelledby="modal-default" aria-hidden="true">
+                        <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h6 class="modal-title" id="modal-title-default"><b>Preview Book's Barcode</b>
+                                    </h6>
+                                    <button type="button" class="btn-close text-dark" data-bs-dismiss="modal"
+                                        aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body text-center">
+                                    <p>The barcode of this book will look like below</p>
+                                    <svg class="barcode-preview"></svg>
+                                    <p>Click confirm to create this book and you can print these barcodes at any time at
+                                        <span class="font-italic text-bolder">book-list</span> screen.
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn bg-gradient-success" id="confirm-edit-btn"
+                                        data-bs-dismiss="modal">Confirm</button>
+                                    <button type="button" class="btn bg-gradient-secondary ml-auto"
+                                        data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Import -->
+        <div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="edit-modal"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">New message to @CT</h5>
+                        <h5 class="modal-title text-bolder">Import Book</h5>
                         <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
@@ -406,11 +568,12 @@
                                 <div class="swal2-icon-content">!</div>
                             </div>
                             <h3 class="font-weight-bolder opacity-9 mt-4">Are you sure?</h3>
-                            <p>You won't be able to revert this!</p>
+                            <p>You won't be able to revert this <span id="del-title-book"></span>!</p>
                         </div>
                         <div class="d-flex justify-content-center mt-4">
                             <button type="button" class="btn btn bg-gradient-success mx-2" data-bs-toggle="modal"
-                                data-bs-target="#successModal" data-bs-dismiss="modal">Yes, Delete it!</button>
+                                data-bs-target="#successModal" data-bs-dismiss="modal" id="confirm-del-btn">Yes, Delete
+                                it!</button>
                             <button type="button" class="btn bg-gradient-danger mx-1" data-bs-dismiss="modal">No,
                                 Cancel</button>
                         </div>
@@ -435,11 +598,12 @@
                                 <div class="swal2-success-circular-line-right"
                                     style="background-color: rgb(255, 255, 255);"></div>
                             </div>
-                            <h3 class="font-weight-bolder opacity-9 mt-4">Deleted!</h3>
-                            <p>Your product has been deleted.</p>
+                            <h3 id="modal-success-title" class="font-weight-bolder opacity-9 mt-4"></h3>
+                            <p id="modal-success-msg"></p>
                         </div>
                         <div class="d-flex justify-content-center mt-4">
-                            <button type="button" class="btn bg-gradient-info" data-bs-dismiss="modal">OK</button>
+                            <button type="button" class="btn bg-gradient-info change-screen" data-screen="book-list"
+                                data-bs-dismiss="modal">OK</button>
                         </div>
                     </div>
                 </div>
@@ -459,7 +623,7 @@
                                 </span>
                             </div>
                             <h3 class="font-weight-bolder opacity-9 mt-4">Failed!</h3>
-                            <p>An error occurred while deleting the product.</p>
+                            <p id="message-modal-fail"></p>
                         </div>
                         <div class="d-flex justify-content-center mt-4">
                             <button type="button" class="btn bg-gradient-info" data-bs-dismiss="modal">OK</button>
@@ -486,33 +650,29 @@
         }
     </script>
 
-    <!-- Jquery -->
+    <!-- Jqeury -->
     <script src="../assets/plugins/jquery/jquery.min.js"></script>
 
     <!-- DataTables -->
     <script src="../assets/plugins/datatables/jquery.dataTables.js"></script>
     <script src="../assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
-    <script>
-        $(function () {
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-            });
-        });
-    </script>
 
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/js/soft-ui-dashboard.min.js?v=1.1.1"></script>
 
+    <!-- Bootstrap Datepicker JS -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+    <!-- JsBarcode library -->
+    <script src="../assets/js/JsBarcode.all.min.js"></script>
+
     <!-- renderer-process -->
     <!-- change-screen script -->
     <script src="../renderer-process/change-screen.renderer.js"></script>
+    <script src="../renderer-process/book-list.renderer.js"></script>
 </body>
 
 </html>

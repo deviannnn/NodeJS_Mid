@@ -217,7 +217,7 @@
                     <p>Mandatory informations</p>
                 </div>
                 <div class="col-lg-6 text-right d-flex flex-column justify-content-center">
-                    <button class="btn bg-gradient-dark ms-auto mb-0" type="button" id="next-button">Next</button>
+                    <button class="btn bg-gradient-dark ms-auto mb-0" type="button" id="next-btn">Next</button>
                     <!-- Modal Preview Barcode -->
                     <div class="modal fade" id="previewModal" tabindex="-1" role="dialog"
                         aria-labelledby="modal-default" aria-hidden="true">
@@ -239,7 +239,7 @@
                                     </p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn bg-gradient-success" id="confirm-button"
+                                    <button type="button" class="btn bg-gradient-success" id="confirm-btn"
                                         data-bs-dismiss="modal">Confirm</button>
                                     <button type="button" class="btn bg-gradient-secondary ml-auto"
                                         data-bs-dismiss="modal">Close</button>
@@ -260,12 +260,12 @@
                                         src="../assets/img/default-book.png" style="height: 300px;">
                                     <input class="form-control" type="text" id="img" hidden disabled>
                                 </div>
-                                <div class="col-12 mt-4">
+                                <div class="col-12 ms-4 mt-4">
                                     <div class="d-flex">
                                         <button class="btn bg-gradient-primary btn-sm mb-0 me-2" type="button"
-                                            id="editBtn">Edit</button>
+                                            id="edit-img-btn">Edit</button>
                                         <button class="btn btn-outline-dark btn-sm mb-0" type="button"
-                                            id="removeBtn">Remove</button>
+                                            id="remove-img-btn">Remove</button>
                                     </div>
                                 </div>
                             </div>
@@ -357,87 +357,7 @@
             </footer>
         </div>
 
-
-        <!-- Modal Detail -->
-        <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detail-modal"
-            aria-hidden="true">
-            <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h6 class="modal-title" id="modal-title-default"><b>Verify Account Creation</b></h6>
-                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>After you verify this message, the system will send a link that lasts for <b>1 minute</b>
-                            to use for the
-                            first
-                            login.</p>
-                        <p>Remind them to check their email immediately after you press the confirm button below.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn bg-gradient-success">Confirm</button>
-                        <button type="button" class="btn btn-link  ml-auto" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal Edit -->
-        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="edit-modal"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">New message to @CT</h5>
-                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                <input type="text" class="form-control" value="Creative Tim" id="recipient-name">
-                            </div>
-                            <div class="form-group">
-                                <label for="message-text" class="col-form-label">Message:</label>
-                                <textarea class="form-control" id="message-text"></textarea>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn bg-gradient-primary">Send message</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal Delete -->
-        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="delete-modal"
-            aria-hidden="true">
-            <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
-                <div class="modal-content">
-                    <div class="modal-body p-4">
-                        <div class="text-center">
-                            <div class="swal2-icon swal2-warning swal2-icon-show"
-                                style="display: flex; margin-top: 15px;">
-                                <div class="swal2-icon-content">!</div>
-                            </div>
-                            <h3 class="font-weight-bolder opacity-9 mt-4">Are you sure?</h3>
-                            <p>You won't be able to revert this!</p>
-                        </div>
-                        <div class="d-flex justify-content-center mt-4">
-                            <button type="button" class="btn btn bg-gradient-success mx-2" data-bs-toggle="modal"
-                                data-bs-target="#successModal" data-bs-dismiss="modal">Yes, Delete it!</button>
-                            <button type="button" class="btn bg-gradient-danger mx-1" data-bs-dismiss="modal">No,
-                                Cancel</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal Success -->
+        <!-- Modal Create Success -->
         <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="success-modal"
             aria-hidden="true">
             <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
@@ -458,8 +378,10 @@
                             <p>A new book has been created.</p>
                         </div>
                         <div class="d-flex justify-content-center mt-4">
-                            <button type="button" class="btn bg-gradient-info change-screen" data-screen="book-list"
-                                data-bs-dismiss="modal">OK</button>
+                            <button type="button" class="btn bg-gradient-info me-2 change-screen"
+                                data-screen="book-list" data-bs-dismiss="modal">Go Book List</button>
+                            <button type="button" class="btn bg-gradient-success change-screen" data-screen="new-book"
+                                data-bs-dismiss="modal">Continue Create</button>
                         </div>
                     </div>
                 </div>
