@@ -67,7 +67,6 @@ let currentBarcode = '';
 $('tbody').on('click', '.print, .detail, .edit, .delete, .import', function () {
     const row = $(this).closest('tr');
     const title = row.find('td:eq(0)').text();
-    const quantity = row.find('td:eq(3)').text();
     currentBarcode = row.find('td:eq(1)').text();
 
     switch (true) {
@@ -234,8 +233,7 @@ function displayBookDetail(book) {
     $('#detail-year-book').text(book.publication.year);
     $('#detail-price-book').text(`${book.price}K`);
     $('#detail-quantity-book').text(book.quantity);
-    $('#detail-status-book').text(book.status);
-    $('#detail-status-book').addClass(`badge ${getStatusBadgeClass(book.status)} badge-sm`);
+    $('#detail-status-book').text(book.status).addClass(`badge ${getStatusBadgeClass(book.status)} badge-sm`);
     $('#detail-created-book').text(formatDateTime(book.created));
     $('#detail-updated-book').text(formatDateTime(book.updated));
 
@@ -274,8 +272,9 @@ $('#edit-img-btn').on('click', onEditImgButtonClick);
 $('#next-edit-btn').on('click', onNextEditButtonClick);
 
 $('#remove-img-btn').on('click', function () {
-    $('#img').val('');
-    $('#preview').attr('src', '../assets/img/default-book.png');
+    console.log(currentImg);
+    $('#preview').attr('src', `../assets/uploads/book/${currentImg}`);
+    $('#img').val(currentImg);
 });
 
 $('#category').on('change', function () {
@@ -337,7 +336,7 @@ function onEditImgButtonClick() {
         })
         .catch((error) => {
             $('#img').val('');
-            $('#preview').attr('src', `../assets/img/${currentImg}`);
+            $('#preview').attr('src', `../assets/uploads/book/${currentImg}`);
         });
 }
 

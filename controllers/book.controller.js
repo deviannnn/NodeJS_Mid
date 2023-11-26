@@ -100,7 +100,7 @@ ipcMain.handle('import-book', async (event, data) => {
             return { success: false, message: 'Failed to update book quantity.' };
         }
 
-        const statusUpdateResult = await updateStatus(data.barcode, updatedQuantity);
+        const statusUpdateResult = await updateStatus(data.barcode, updatedBook.quantity);
 
         if (!statusUpdateResult.success) {
             return statusUpdateResult;

@@ -217,8 +217,8 @@
                                 <div class="col-12 col-sm-12 col-md-6">
                                     <h5 class="mb-0">Account table</h5>
                                     <p class="text-sm mb-0">
-                                        Tip: you can edit the <b>STATUS</b> & <b>LOCKED</b> attributes by clicking on
-                                        the tag corresponding to that account
+                                        Tip: You can set <b>Lock</b> or <b>Unlock</b> the account by clicking on their
+                                        tag
                                     </p>
                                 </div>
                                 <div class="ms-auto my-auto mt-lg-0 mt-4">
@@ -281,93 +281,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="../assets/img/team-2.jpg"
-                                                            class="avatar avatar-sm me-3" alt="user1">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Neymar Jr</h6>
-                                                        <p class="text-xs text-secondary mb-0">neymar10@gmail.com</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-sm bg-gradient-success">actived</span>
-                                            </td>
-                                            <td>
-                                                <span class="text-secondary text-xs font-weight-bold">20/11/2023</span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-sm bg-gradient-danger">locked</span>
-                                            </td>
-                                            <td class="text-center">
-                                                <button type="button" class="action-btn detail" data-bs-toggle="modal"
-                                                    data-bs-target="#detailModal">
-                                                    <i class="fas fa-eye text-secondary" aria-hidden="true"></i>
-                                                </button>
-                                                <button type="button" class="action-btn edit" data-bs-toggle="modal"
-                                                    data-bs-target="#editModal">
-                                                    <i class="fas fa-user-edit text-secondary" aria-hidden="true"></i>
-                                                </button>
-                                                <button type="button" class="action-btn import" data-bs-toggle="modal"
-                                                    data-bs-target="#importModal">
-                                                    <i class="fas fa-cart-arrow-down text-secondary"
-                                                        aria-hidden="true"></i>
-                                                </button>
-                                                <button type="button" class="action-btn delete" data-bs-toggle="modal"
-                                                    data-bs-target="#deleteModal">
-                                                    <i class="fas fa-trash text-secondary" aria-hidden="true"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div>
-                                                        <img src="../assets/img/team-2.jpg"
-                                                            class="avatar avatar-sm me-3" alt="user1">
-                                                    </div>
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">Cristiano Ronaldo</h6>
-                                                        <p class="text-xs text-secondary mb-0">cr7@gmail.com</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-sm bg-gradient-secondary">inactived</span>
-                                            </td>
-                                            <td>
-                                                <span class="text-secondary text-xs font-weight-bold">20/04/2023</span>
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-sm bg-gradient-info">nolock</span>
-                                            </td>
-                                            <td class="text-center">
-                                                <button type="button" class="detail" data-bs-toggle="modal"
-                                                    data-bs-target="#detailModal"
-                                                    style="border: 0; background-color: transparent;">
-                                                    <i class="fas fa-eye text-secondary" aria-hidden="true"></i>
-                                                </button>
-                                                <button type="button" class="edit" data-bs-toggle="modal"
-                                                    data-bs-target="#editModal"
-                                                    style="border: 0; background-color: transparent;">
-                                                    <i class="fas fa-user-edit text-secondary" aria-hidden="true"></i>
-                                                </button>
-                                                <button type="button" class="delete" data-bs-toggle="modal"
-                                                    data-bs-target="#deleteModal"
-                                                    style="border: 0; background-color: transparent;">
-                                                    <i class="fas fa-trash text-secondary" aria-hidden="true"></i>
-                                                </button>
-                                                <button type="button" class="delete" data-bs-toggle="modal"
-                                                    data-bs-target="#failModal"
-                                                    style="border: 0; background-color: transparent;">
-                                                    fail
-                                                </button>
-                                            </td>
-                                        </tr>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -397,25 +311,70 @@
 
         <!-- Modal Detail -->
         <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detail-modal"
-            aria-hidden="true">
+            aria-hidden="true" style="--bs-modal-width: 800px;">
             <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h6 class="modal-title" id="modal-title-default"><b>Verify Account Creation</b></h6>
+                        <h5 class="modal-title text-bolder">Account Detail</h5>
                         <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>After you verify this message, the system will send a link that lasts for <b>1 minute</b>
-                            to use for the
-                            first
-                            login.</p>
-                        <p>Remind them to check their email immediately after you press the confirm button below.</p>
+                        <div class="row">
+                            <div class="col-4 text-center">
+                                <h6>Account Image</h6>
+                                <img id="detail-img-account" class="w-100" alt="product_image"
+                                    src="../assets/img/default.png" style="height: 250px;">
+                            </div>
+                            <div class="col-8 text-center">
+                                <h6>Account Information</h6>
+                                <div class="row ms-3">
+                                    <div class="col-12 d-flex">
+                                        <h6 class="me-2">Id:</h6><span id="detail-id-account"></span>
+                                    </div>
+                                    <div class="col-12 d-flex">
+                                        <h6 class="me-2">Name:</h6><span id="detail-name-account"></span>
+                                    </div>
+                                    <div class="col-12 d-flex">
+                                        <h6 class="me-2">Email:</h6><span id="detail-email-account"></span>
+                                    </div>
+                                    <div class="col-12 d-flex">
+                                        <h6 class="me-2">Phone:</h6><span id="detail-phone-account"></span>
+                                    </div>
+                                    <div class="col-12 d-flex">
+                                        <h6 class="me-2">Gender:</h6><span id="detail-gender-account"></span>
+                                    </div>
+                                    <div class="col-12 d-flex">
+                                        <h6 class="me-2">Birthday:</h6><span id="detail-birthday-account"></span>
+                                    </div>
+                                    <div class="col-12 d-flex">
+                                        <h6 class="me-2">Address:</h6><span id="detail-address-account"></span>
+                                    </div>
+                                    <div class="col-12 d-flex">
+                                        <h6 class="me-2">Role:</h6><span id="detail-role-account"></span>
+                                    </div>
+                                    <div class="col-12 d-flex">
+                                        <h6 class="m-0 me-2">Status:</h6>
+                                        <span id="detail-status-account" class="pt-2"></span>
+
+                                        <h6 class="m-0 ms-5 me-2">Locked:</h6>
+                                        <span id="detail-locked-account" class="pt-2"></span>
+                                    </div>
+
+                                    <div class="col-12 mt-2 d-flex">
+                                        <h6 class="me-2">Created Date:</h6><span id="detail-created-account"></span>
+                                    </div>
+                                    <div class="col-12 d-flex">
+                                        <h6 class="me-2">Updated Date:</h6><span id="detail-updated-account"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn bg-gradient-success">Confirm</button>
-                        <button type="button" class="btn btn-link  ml-auto" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn bg-gradient-secondary ml-auto"
+                            data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
@@ -542,24 +501,12 @@
         }
     </script>
 
-    <!-- Jqeury -->
+    <!-- Jquery -->
     <script src="../assets/plugins/jquery/jquery.min.js"></script>
 
     <!-- DataTables -->
     <script src="../assets/plugins/datatables/jquery.dataTables.js"></script>
     <script src="../assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
-    <script>
-        $(function () {
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-            });
-        });
-    </script>
 
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
@@ -569,6 +516,7 @@
     <!-- renderer-process -->
     <!-- change-screen script -->
     <script src="../renderer-process/change-screen.renderer.js"></script>
+    <script src="../renderer-process/staff-list.renderer.js"></script>
 </body>
 
 </html>

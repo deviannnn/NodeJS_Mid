@@ -123,10 +123,10 @@ async function validateInput(input) {
 
     if (input.is('#barcode')) {
         const check = await existBarcode(value);
-        if (!check) {
-            input.removeClass('is-invalid').addClass('is-valid');
-        } else {
+        if (check) {
             input.removeClass('is-valid').addClass('is-invalid');
+        } else {
+            input.removeClass('is-invalid').addClass('is-valid');
         }
         return !check;
     }

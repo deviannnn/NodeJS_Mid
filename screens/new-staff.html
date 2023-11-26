@@ -190,7 +190,7 @@
                         <div class="input-group">
                             <span class="input-group-text text-body"><i class="fas fa-search"
                                     aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" placeholder="Type here..." onfocus="focused(this)"
+                            <input type="text" class="form-control" placeholder="Type here..."
                                 onfocusout="defocused(this)">
                         </div>
                     </div>
@@ -210,7 +210,7 @@
         <div class="container-fluid py-3">
             <!-- content -->
             <div class="row">
-                <div class="col-12 col-lg-8 mx-auto mt-5">
+                <div class="col-12 col-lg-9 mx-auto mt-5">
                     <form class="multisteps-form__form" style="height: 408px;">
                         <div class="card multisteps-form__panel p-3 border-radius-xl bg-white js-active"
                             data-animation="FadeIn">
@@ -219,69 +219,92 @@
                             <div class="multisteps-form__content">
                                 <div class="row mt-3">
                                     <div class="col-12 col-sm-6">
-                                        <label>Full Name</label>
-                                        <input class="form-control" type="text" id="name" name="name"
-                                            placeholder="eg. Nguyen Van A" onfocus="focused(this)">
+                                        <label>
+                                            Full Name
+                                            <span id="name-err" class="ms-2 text-xxs text-danger"
+                                                style="display: none;"></span>
+                                        </label>
+                                        <input class="form-control" type="text" id="name"
+                                            placeholder="eg. Nguyen Van A">
                                     </div>
                                     <div class="col-12 col-sm-3 mt-3 mt-sm-0">
                                         <label>Gender</label>
                                         <div class="choices" data-type="select-one">
-                                            <select class="form-control" id="gender" name="gender"
-                                                onfocus="focused(this)">
+                                            <select class="form-control" id="gender">
                                                 <option value="male">Male</option>
                                                 <option value="female">Female</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-3 mt-3 mt-sm-0">
-                                        <label>Birthday</label>
-                                        <input class="form-control" type="date" id="birthday" name="birthday"
-                                            onfocus="focused(this)">
+                                        <label>
+                                            Birthday
+                                            <span id="date-err" class="ms-2 text-xxs text-danger"
+                                                style="display: none;"></span>
+                                        </label>
+                                        <input class="form-control" type="date" id="date">
                                     </div>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-12 col-sm-6">
-                                        <label>Email</label>
-                                        <input class="form-control" type="text" id="email" name="email"
-                                            placeholder="eg. staff@gmail.com" onfocus="focused(this)">
+                                        <label>
+                                            Email
+                                            <span id="email-err" class="ms-2 text-xxs text-danger"
+                                                style="display: none;"></span>
+                                        </label>
+                                        <input class="form-control" type="email" id="email"
+                                            placeholder="eg. staff@gmail.com">
                                     </div>
                                     <div class="col-12 col-sm-6 mt-3 mt-sm-0">
-                                        <label>Phone Number</label>
-                                        <input class="form-control" type="email" id="phone" name="phone"
-                                            placeholder="eg. 0987654321" onfocus="focused(this)">
+                                        <label>
+                                            Phone Number
+                                            <span id="phone-err" class="ms-2 text-xxs text-danger"
+                                                style="display: none;"></span>
+                                        </label>
+                                        <input class="form-control" type="text" id="phone" placeholder="eg. 0987654321">
                                     </div>
                                 </div>
                                 <div class="row mt-3">
-                                    <div class="col-12 col-sm-2">
-                                        <label>Address</label>
-                                        <input class="form-control" type="text" id="address_num" name="address_num"
-                                            placeholder="No." onfocus="focused(this)">
+                                    <div class="col-12 col-sm-4">
+                                        <label>Address
+                                            <span id="num-err" class="ms-2 text-xxs text-danger"
+                                                style="display: none;"></span>
+                                        </label>
+                                        <input class="form-control" type="text" id="num" placeholder="No.">
+                                    </div>
+                                    <div class="col-12 col-sm-8">
+                                        <label>&nbsp;
+                                            <span id="street-err" class="text-xxs text-danger"
+                                                style="display: none;"></span>
+                                        </label>
+                                        <input class="form-control" type="text" id="street" placeholder="Street">
                                     </div>
                                     <div class="col-12 col-sm-4">
-                                        <label>&nbsp;</label>
-                                        <input class="form-control" type="text" id="address_street"
-                                            name="address_street" placeholder="Street" onfocus="focused(this)">
+                                        <label>&nbsp;
+                                            <span id="ward-err" class="text-xxs text-danger"
+                                                style="display: none;"></span>
+                                        </label>
+                                        <input class="form-control" type="text" id="ward" placeholder="Ward">
                                     </div>
-                                    <div class="col-12 col-sm-2">
-                                        <label>&nbsp;</label>
-                                        <input class="form-control" type="text" id="address_ward" name="address_ward"
-                                            placeholder="Ward" onfocus="focused(this)">
+                                    <div class="col-12 col-sm-4">
+                                        <label>&nbsp;
+                                            <span id="district-err" class="text-xxs text-danger"
+                                                style="display: none;"></span>
+                                        </label>
+                                        <input class="form-control" type="text" id="district" placeholder="District">
                                     </div>
-                                    <div class="col-12 col-sm-2">
-                                        <label>&nbsp;</label>
-                                        <input class="form-control" type="text" id="address_district"
-                                            name="address_district" placeholder="District" onfocus="focused(this)">
-                                    </div>
-                                    <div class="col-12 col-sm-2 mt-3 mt-sm-0">
-                                        <label>&nbsp;</label>
-                                        <input class="form-control" type="text" id="address_city" name="address_city"
-                                            placeholder="City" onfocus="focused(this)">
+                                    <div class="col-12 col-sm-4 mt-3 mt-sm-0">
+                                        <label>&nbsp;
+                                            <span id="city-err" class="text-xxs text-danger"
+                                                style="display: none;"></span>
+                                        </label>
+                                        <input class="form-control" type="text" id="city" placeholder="City">
                                     </div>
                                 </div>
                                 <div class="button-row d-flex mt-4">
                                     <button class="btn bg-gradient-dark ms-auto mb-0" type="button"
-                                        data-bs-toggle="modal" data-bs-target="#validate-modal">Next</button>
-                                    <div class="modal fade" id="validate-modal" tabindex="-1" role="dialog"
+                                        id="next-btn">Next</button>
+                                    <div class="modal fade" id="verifymodal" tabindex="-1" role="dialog"
                                         aria-labelledby="modal-default" aria-hidden="true">
                                         <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
                                             <div class="modal-content">
@@ -295,17 +318,14 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>After you verify this message, the system will send a link that
-                                                        lasts for
-                                                        <b>1 minute</b>
-                                                        to use for the first login.
+                                                    <p>Once you verify this message, this account will be created with
+                                                        the same <b>password</b> as the <b>email</b> to use for the
+                                                        first login.
                                                     </p>
-                                                    <p>Remind them to check their email immediately after you click the
-                                                        confirm
-                                                        button below.</p>
+                                                    <p>Please remind the staff to change account passwords.</p>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button"
+                                                    <button type="button" id="confirm-btn"
                                                         class="btn bg-gradient-success">Confirm</button>
                                                     <button type="button" class="btn bg-gradient-secondary ml-auto"
                                                         data-bs-dismiss="modal">Close</button>
@@ -338,86 +358,6 @@
             </footer>
         </div>
 
-
-        <!-- Modal Detail -->
-        <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detail-modal"
-            aria-hidden="true">
-            <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h6 class="modal-title" id="modal-title-default"><b>Verify Account Creation</b></h6>
-                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>After you verify this message, the system will send a link that lasts for <b>1 minute</b>
-                            to use for the
-                            first
-                            login.</p>
-                        <p>Remind them to check their email immediately after you press the confirm button below.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn bg-gradient-success">Confirm</button>
-                        <button type="button" class="btn btn-link  ml-auto" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal Edit -->
-        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="edit-modal"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">New message to @CT</h5>
-                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                <input type="text" class="form-control" value="Creative Tim" id="recipient-name">
-                            </div>
-                            <div class="form-group">
-                                <label for="message-text" class="col-form-label">Message:</label>
-                                <textarea class="form-control" id="message-text"></textarea>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn bg-gradient-primary">Send message</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal Delete -->
-        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="delete-modal"
-            aria-hidden="true">
-            <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
-                <div class="modal-content">
-                    <div class="modal-body p-4">
-                        <div class="text-center">
-                            <div class="swal2-icon swal2-warning swal2-icon-show"
-                                style="display: flex; margin-top: 15px;">
-                                <div class="swal2-icon-content">!</div>
-                            </div>
-                            <h3 class="font-weight-bolder opacity-9 mt-4">Are you sure?</h3>
-                            <p>You won't be able to revert this!</p>
-                        </div>
-                        <div class="d-flex justify-content-center mt-4">
-                            <button type="button" class="btn btn bg-gradient-success mx-2" data-bs-toggle="modal"
-                                data-bs-target="#successModal" data-bs-dismiss="modal">Yes, Delete it!</button>
-                            <button type="button" class="btn bg-gradient-danger mx-1" data-bs-dismiss="modal">No,
-                                Cancel</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- Modal Success -->
         <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="success-modal"
             aria-hidden="true">
@@ -435,11 +375,14 @@
                                 <div class="swal2-success-circular-line-right"
                                     style="background-color: rgb(255, 255, 255);"></div>
                             </div>
-                            <h3 class="font-weight-bolder opacity-9 mt-4">Deleted!</h3>
-                            <p>Your product has been deleted.</p>
+                            <h3 class="font-weight-bolder opacity-9 mt-4">Created!</h3>
+                            <p>A new staff has been created.</p>
                         </div>
                         <div class="d-flex justify-content-center mt-4">
-                            <button type="button" class="btn bg-gradient-info" data-bs-dismiss="modal">OK</button>
+                            <button type="button" class="btn bg-gradient-info me-2 change-screen"
+                                data-screen="staff-list" data-bs-dismiss="modal">Go Staff List</button>
+                            <button type="button" class="btn bg-gradient-success change-screen" data-screen="new-staff"
+                                data-bs-dismiss="modal">Continue Create</button>
                         </div>
                     </div>
                 </div>
@@ -459,7 +402,7 @@
                                 </span>
                             </div>
                             <h3 class="font-weight-bolder opacity-9 mt-4">Failed!</h3>
-                            <p>An error occurred while deleting the product.</p>
+                            <p id="message-modal-fail"></p>
                         </div>
                         <div class="d-flex justify-content-center mt-4">
                             <button type="button" class="btn bg-gradient-info" data-bs-dismiss="modal">OK</button>
@@ -496,6 +439,7 @@
     <!-- renderer-process -->
     <!-- change-screen script -->
     <script src="../renderer-process/change-screen.renderer.js"></script>
+    <script src="../renderer-process/new-staff.renderer.js"></script>
 </body>
 
 </html>

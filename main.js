@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 require('./controllers/book.controller');
+require('./controllers/account.controller');
 
 const screenPath = path.join(__dirname, 'screens');
 
@@ -34,7 +35,7 @@ function createWindow() {
         win.loadFile(path.join(screenPath, `${screen}.html`));
     });
 
-    win.loadFile(path.join(screenPath, 'new-book.html'));
+    win.loadFile(path.join(screenPath, 'book-list.html'));
 }
 
 app.whenReady().then(() => {

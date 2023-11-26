@@ -15,3 +15,14 @@ contextBridge.exposeInMainWorld('bookAPI', {
   chooseImage: () => ipcRenderer.invoke('choose-img-book'),
   checkBarcode: (barcode) => ipcRenderer.invoke('check-barcode', barcode),
 });
+
+contextBridge.exposeInMainWorld('accountAPI', {
+  getAll: () => ipcRenderer.invoke('get-all-account'),
+  get: (email) => ipcRenderer.invoke('get-account', email),
+  add: (data) => ipcRenderer.invoke('add-account', data),
+  edit: (data) => ipcRenderer.invoke('edit-account', data),
+  delete: (email) => ipcRenderer.invoke('delete-account', email),
+  chooseImage: () => ipcRenderer.invoke('choose-img-account'),
+  checkEmail: (email) => ipcRenderer.invoke('check-email', email),
+  checkPhone: (phone) => ipcRenderer.invoke('check-phone', phone),
+});
