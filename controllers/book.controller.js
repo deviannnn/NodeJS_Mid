@@ -30,6 +30,7 @@ ipcMain.handle('get-book', async (event, barcode) => {
 ipcMain.handle('delete-book', async (event, barcode) => {
     try {
         const existingBook = await Book.findOneAndDelete({ barcode });
+        
         if (!existingBook) {
             return ({ success: false, message: 'Book not found.' });
         }
@@ -37,7 +38,7 @@ ipcMain.handle('delete-book', async (event, barcode) => {
         const imgPath = path.join(__dirname, '..', 'assets/uploads/book', existingBook.img);
         await fss.unlink(imgPath);
 
-        return { success: true };
+        return { success: true, title: 'Deleted!', message: 'This book has been deleted.' };
     } catch (error) {
         return { success: false, message: error.message };
     }
@@ -80,7 +81,7 @@ ipcMain.handle('import-book', async (event, data) => {
         if (!existingBook) {
             return { success: false, message: 'Book not found.' };
         }
-        
+
         const currentQuantity = parseInt(existingBook.quantity, 10);
         const importQuantity = parseInt(data.quantity, 10);
         const updatedQuantity = currentQuantity + importQuantity;
@@ -106,7 +107,7 @@ ipcMain.handle('import-book', async (event, data) => {
             return statusUpdateResult;
         }
 
-        return { success: true };
+        return { success: true, title: 'Imported!', message: 'Your book has been imported.' };
     } catch (error) {
         return { success: false, message: error.message };
     }
@@ -123,7 +124,7 @@ ipcMain.handle('edit-book', async (event, data) => {
         let imgPath = data.img;
         if (imgPath !== existingBook.img) {
             const targetImagePath = await copyFileToDirectory(
-                data.img,
+                imgPath,
                 path.join(__dirname, '..', 'assets/uploads/book')
             );
             imgPath = targetImagePath || 'default-book.png';
@@ -133,7 +134,7 @@ ipcMain.handle('edit-book', async (event, data) => {
             { barcode: data.barcode },
             {
                 $set: {
-                    barcode: data.newbarcode,
+                    barcode: data.newBarcode,
                     category: data.category,
                     title: data.title,
                     author: data.author,
@@ -149,7 +150,7 @@ ipcMain.handle('edit-book', async (event, data) => {
             { new: true }
         );
 
-        return { success: true };
+        return { success: true, title: 'Updated!', message: 'Information about this book has been changed.' };
     } catch (error) {
         return { success: false, message: error.message };
     }

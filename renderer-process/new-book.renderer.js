@@ -81,7 +81,7 @@ async function onConfirmButtonClick() {
                 }
             })
             .catch((error) => {
-                $('#message-modal-fail').text('Something went wrong. Please try again later!')
+                $('#message-modal-fail').text('Somethings went wrong. Please try again later!')
                 $('#failModal').modal('show');
             });
     } else {

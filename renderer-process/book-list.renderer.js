@@ -10,7 +10,7 @@ function init() {
             }
         })
         .catch((error) => {
-            $('#message-modal-fail').text('Something went wrong. Please try again later!')
+            $('#message-modal-fail').text('Somethings went wrong. Please try again later!')
             $('#failModal').modal('show');
         });
 
@@ -120,7 +120,7 @@ function getAndShowBook(modal) {
                 }
             })
             .catch((error) => {
-                $('#message-modal-fail').text('Something went wrong. Please try again later!')
+                $('#message-modal-fail').text('Somethings went wrong. Please try again later!')
                 $('#failModal').modal('show');
             });
     } else {
@@ -137,8 +137,8 @@ function onConfirmDelButtonClick() {
         window.bookAPI.delete(currentBarcode)
             .then((response) => {
                 if (response.success) {
-                    $('#modal-success-title').text('Deleted!');
-                    $('#modal-success-msg').text('Your book has been deleted.');
+                    $('#modal-success-title').text(response.title);
+                    $('#modal-success-msg').text(response.message);
                     $('#successModal').modal('show');
                 } else {
                     $('#message-modal-fail').text(response.message)
@@ -146,7 +146,7 @@ function onConfirmDelButtonClick() {
                 }
             })
             .catch((error) => {
-                $('#message-modal-fail').text('Something went wrong. Please try again later!')
+                $('#message-modal-fail').text('Somethings went wrong. Please try again later!')
                 $('#failModal').modal('show');
             });
     } else {
@@ -199,8 +199,8 @@ function onConfirmImportButtonClick() {
         window.bookAPI.import({ barcode: currentBarcode, quantity: importQuantity })
             .then((response) => {
                 if (response.success) {
-                    $('#modal-success-title').text('Imported!');
-                    $('#modal-success-msg').text('Your book has been imported.');
+                    $('#modal-success-title').text(response.title);
+                    $('#modal-success-msg').text(response.message);
                     $('#successModal').modal('show');
                 } else {
                     $('#message-modal-fail').text(response.message)
@@ -208,11 +208,11 @@ function onConfirmImportButtonClick() {
                 }
             })
             .catch((error) => {
-                $('#message-modal-fail').text('Something went wrong. Please try again later!')
+                $('#message-modal-fail').text('Somethings went wrong. Please try again later!')
                 $('#failModal').modal('show');
             });
     } else {
-        $('#message-modal-fail').text('No book has been selected to delete yet.')
+        $('#message-modal-fail').text('No book has been selected to import yet.')
         $('#failModal').modal('show');
     }
 }
@@ -233,7 +233,7 @@ function displayBookDetail(book) {
     $('#detail-year-book').text(book.publication.year);
     $('#detail-price-book').text(`${book.price}K`);
     $('#detail-quantity-book').text(book.quantity);
-    $('#detail-status-book').text(book.status).addClass(`badge ${getStatusBadgeClass(book.status)} badge-sm`);
+    $('#detail-status-book').text(book.status).removeClass().addClass(`pt-2 badge badge-sm ${getStatusBadgeClass(book.status)}`);
     $('#detail-created-book').text(formatDateTime(book.created));
     $('#detail-updated-book').text(formatDateTime(book.updated));
 
@@ -243,6 +243,8 @@ function displayBookDetail(book) {
 // Edit module
 let currentImg = '';
 function displayBookEdit(book) {
+    currentImg = book.img;
+
     $('#category option').each(function () {
         if ($(this).val() === book.category) {
             $(this).prop('selected', true);
@@ -250,10 +252,8 @@ function displayBookEdit(book) {
             $(this).prop('selected', false);
         }
     });
-
     $('#preview').attr('src', `../assets/uploads/book/${book.img}`);
     $('#img').val(book.img);
-    currentImg = book.img;
     $('#title').val(book.title);
     $('#author').val(book.author);
     $('#publisher').val(book.publication.publisher);
@@ -300,7 +300,7 @@ async function onConfirmEditButtonClick() {
             publisher: getValue('#publisher'),
             year: getValue('#year'),
             barcode: currentBarcode,
-            newbarcode: getValue('#barcode'),
+            newBarcode: getValue('#barcode'),
             price: getValue('#price'),
             img: getValue('#img'),
         };
@@ -309,8 +309,8 @@ async function onConfirmEditButtonClick() {
         window.bookAPI.edit(data)
             .then((response) => {
                 if (response.success) {
-                    $('#modal-success-title').text('Updated!');
-                    $('#modal-success-msg').text('This book has been updated.');
+                    $('#modal-success-title').text(response.title);
+                    $('#modal-success-msg').text(response.message);
                     $('#successModal').modal('show');
                 } else {
                     $('#message-modal-fail').text(response.message)
@@ -318,11 +318,11 @@ async function onConfirmEditButtonClick() {
                 }
             })
             .catch((error) => {
-                $('#message-modal-fail').text('Something went wrong. Please try again later!')
+                $('#message-modal-fail').text('Somethings went wrong. Please try again later!')
                 $('#failModal').modal('show');
             });
     } else {
-        $('#message-modal-fail').text('Please correct invalid fields')
+        $('#message-modal-fail').text('No book has been selected to edit yet.')
         $('#failModal').modal('show');
     }
 }
@@ -343,13 +343,13 @@ function onEditImgButtonClick() {
 async function onNextEditButtonClick() {
     const isValid = await validateAllFields();
     if (isValid) {
-        $('#previewModal').modal('show');
         const barcode = $('#barcode').val();
         JsBarcode(".barcode-preview", barcode, {
             format: 'CODE128',
             width: 1,
             height: 60,
         });
+        $('#previewModal').modal('show');
     } else {
         $('#message-modal-fail').text('Please correct invalid fields')
         $('#failModal').modal('show');
@@ -441,7 +441,7 @@ function getStatusBadgeClass(status) {
 function formatDate(dateString) {
     const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
     const date = new Date(dateString);
-    return new Intl.DateTimeFormat('en-US', options).format(date);
+    return new Intl.DateTimeFormat('en-GB', options).format(date);
 }
 
 function formatDateTime(dateString) {

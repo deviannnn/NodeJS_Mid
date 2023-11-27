@@ -9,7 +9,7 @@ $('#confirm-btn').on('click', onConfirmButtonClick);
 async function onNextButtonClick() {
     const isValid = await validateAllFields();
     if (isValid) {
-        $('#verifymodal').modal('show');
+        $('#verifyModal').modal('show');
     } else {
         $('#message-modal-fail').text('Please correct invalid fields')
         $('#failModal').modal('show');
@@ -43,7 +43,7 @@ async function onConfirmButtonClick() {
                 }
             })
             .catch((error) => {
-                $('#message-modal-fail').text('Something went wrong. Please try again later!')
+                $('#message-modal-fail').text('Somethings went wrong. Please try again later!')
                 $('#failModal').modal('show');
             });
     } else {

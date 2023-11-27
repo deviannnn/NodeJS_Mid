@@ -8,7 +8,13 @@ const accountSchema = new mongoose.Schema({
     gender: { type: String, required: true, enum: ['male', 'female'] },
     birthday: { type: Date, required: true },
     phone: { type: String, required: true, unique: true },
-    address: { type: String, required: true },
+    address: {
+        num: { type: String, required: true },
+        street: { type: String, required: true },
+        ward: { type: String, required: true },
+        district: { type: String, required: true },
+        city: { type: String, required: true }
+    },
     avatar: { type: String, required: true },
     role: { type: String, required: true, enum: ['admin', 'staff'], default: 'staff' },
     status: { type: String, required: true, enum: ['inactived', 'actived'], default: 'inactived' },
