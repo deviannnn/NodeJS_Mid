@@ -42,12 +42,17 @@ function displayBooks(books) {
         row.append(`<td class="text-sm">${book.quantity}</td>`);
         row.append(`<td><span class="badge ${getStatusBadgeClass(book.status)} badge-sm">${book.status}</span></td>`);
         row.append(`<td class="text-sm">${formatDate(book.updated)}</td>`);
-        row.append(
-            `<td><button type="button" class="action-btn detail"><i class="fas fa-eye text-secondary" aria-hidden="true"></i></button>
-            <button type="button" class="action-btn edit"><i class="fas fa-pen-square text-secondary" aria-hidden="true"></i></button>
-            <button type="button" class="action-btn import"><i class="fas fa-cart-arrow-down text-secondary"ria-hidden="true"></i></button>
-            <button type="button" class="action-btn delete"><i class="fas fa-trash text-secondary" aria-hidden="true"></i></button></td>`
-        );
+
+        if (isAdmin) {
+            row.append(
+                `<td><button type="button" class="action-btn detail"><i class="fas fa-eye text-secondary" aria-hidden="true"></i></button>
+                <button type="button" class="action-btn edit"><i class="fas fa-pen-square text-secondary" aria-hidden="true"></i></button>
+                <button type="button" class="action-btn import"><i class="fas fa-cart-arrow-down text-secondary"ria-hidden="true"></i></button>
+                <button type="button" class="action-btn delete"><i class="fas fa-trash text-secondary" aria-hidden="true"></i></button></td>`
+            );
+        } else {
+            row.append('<td><button type="button" class="action-btn detail"><i class="fas fa-eye text-secondary" aria-hidden="true"></i></button>');
+        }
 
         tableBody.append(row);
     });
@@ -195,7 +200,6 @@ $('#confirm-import-btn').on('click', onConfirmImportButtonClick);
 function onConfirmImportButtonClick() {
     const importQuantity = getValue('#import-quantity');
     if (validateImport(importQuantity)) {
-        console.log({ barcode: currentBarcode, quantity: importQuantity });
         window.bookAPI.import({ barcode: currentBarcode, quantity: importQuantity })
             .then((response) => {
                 if (response.success) {
@@ -272,7 +276,6 @@ $('#edit-img-btn').on('click', onEditImgButtonClick);
 $('#next-edit-btn').on('click', onNextEditButtonClick);
 
 $('#remove-img-btn').on('click', function () {
-    console.log(currentImg);
     $('#preview').attr('src', `../assets/uploads/book/${currentImg}`);
     $('#img').val(currentImg);
 });
@@ -304,7 +307,6 @@ async function onConfirmEditButtonClick() {
             price: getValue('#price'),
             img: getValue('#img'),
         };
-        console.log(data);
 
         window.bookAPI.edit(data)
             .then((response) => {

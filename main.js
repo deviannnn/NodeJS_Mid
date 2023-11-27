@@ -24,18 +24,23 @@ function createWindow() {
     win = new BrowserWindow({
         titleBarStyle: "hidden",
         titleBarOverlay: false,
+        resizable: false,
         webPreferences: {
             preload: path.join(__dirname, "preload.js"),
         },
     });
 
-    win.maximize();
-
     ipcMain.on('go-to-screen', (event, screen) => {
+        if (screen === 'login') {
+            win.setSize(1044, 640); 
+        } else {
+            win.maximize();
+        }
         win.loadFile(path.join(screenPath, `${screen}.html`));
     });
 
-    win.loadFile(path.join(screenPath, 'book-list.html'));
+    // First screen
+    win.loadFile(path.join(screenPath, 'login.html'));
 }
 
 app.whenReady().then(() => {

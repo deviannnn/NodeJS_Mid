@@ -17,12 +17,13 @@ contextBridge.exposeInMainWorld('bookAPI', {
 });
 
 contextBridge.exposeInMainWorld('accountAPI', {
+  login: (data) => ipcRenderer.invoke('login', data),
   getAll: () => ipcRenderer.invoke('get-all-account'),
   get: (email) => ipcRenderer.invoke('get-account', email),
   add: (data) => ipcRenderer.invoke('add-account', data),
   edit: (data) => ipcRenderer.invoke('edit-info-account', data),
-  toggleLock: (staffId) => ipcRenderer.invoke('toggle-lock-account', staffId),
   delete: (staffId) => ipcRenderer.invoke('delete-account', staffId),
+  toggleLock: (staffId) => ipcRenderer.invoke('toggle-lock-account', staffId),
   chooseImage: () => ipcRenderer.invoke('choose-img-account'),
   checkEmail: (email) => ipcRenderer.invoke('check-email', email),
   checkPhone: (phone) => ipcRenderer.invoke('check-phone', phone),

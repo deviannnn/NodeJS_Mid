@@ -36,13 +36,19 @@ function displayAccounts(accounts) {
         </td>`);
         row.append(`<td><span class="badge badge-sm ${getBadgeClass(account.status)}">${account.status}</span></td>`);
         row.append(`<td><span class="text-secondary text-xs font-weight-bold">${formatDate(account.created)}</span></td>`);
-        row.append(`<td><span class="mt-3 badge btn lock badge-sm ${getBadgeClass(account.lock)}">${account.lock ? 'locked' : 'nolocked'}</span></td>`);
-        row.append(`
-        <td>
-            <button type="button" class="action-btn detail"><i class="fas fa-eye text-secondary" aria-hidden="true"></i></button>
-            <button type="button" class="action-btn edit"><i class="fas fa-pen-square text-secondary" aria-hidden="true"></i></button>
-            <button type="button" class="action-btn delete"><i class="fas fa-trash text-secondary" aria-hidden="true"></i></button>
-        </td>`);
+
+        if (isAdmin) {
+            row.append(`<td><span class="mt-3 badge btn lock badge-sm ${getBadgeClass(account.lock)}">${account.lock ? 'locked' : 'nolocked'}</span></td>`);
+            row.append(`
+            <td>
+                <button type="button" class="action-btn detail"><i class="fas fa-eye text-secondary" aria-hidden="true"></i></button>
+                <button type="button" class="action-btn edit"><i class="fas fa-pen-square text-secondary" aria-hidden="true"></i></button>
+                <button type="button" class="action-btn delete"><i class="fas fa-trash text-secondary" aria-hidden="true"></i></button>
+            </td>`);
+        } else {
+            row.append(`<td><span class="badge badge-sm ${getBadgeClass(account.lock)}">${account.lock ? 'locked' : 'nolocked'}</span></td>`);
+            row.append('<td><button type="button" class="action-btn detail"><i class="fas fa-eye text-secondary" aria-hidden="true"></i></button></td>');
+        }
 
         tableBody.append(row);
     });

@@ -1,4 +1,5 @@
 const { ipcMain } = require('electron');
+const path = require("path");
 const bcrypt = require('bcrypt');
 
 const Account = require('../models/account.model');
@@ -10,10 +11,14 @@ ipcMain.handle('login', async (event, data) => {
         if (!account || !bcrypt.compareSync(data.password, account.password)) {
             return { success: false, message: 'Invalid email or password.' };
         }
+        if (account.lock) {
+            return { success: false, message: 'Your account has been locked.' };
+        }
+        if (account.status === 'inactived') {
+            return { success: false, message: 'Your account hasn\'t been actived.' };
+        }
 
-        event.sender.send('login-success', account);
-
-        return { success: true, message: 'Login successful.' };
+        return { success: true, account: { staffId: account.staffId, role: account.role, avatar: account.avatar, name: account.name } };
     } catch (error) {
         return { success: false, message: error.message };
     }
