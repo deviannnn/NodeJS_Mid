@@ -36,7 +36,7 @@ function displayBooks(books) {
 
     books.forEach(book => {
         const row = $('<tr>');
-        row.append(`<td><div class="d-flex align-items-center"><img src="../assets/uploads/book/${book.img}" alt="off_white"><h6 class="ms-3">${book.title}</h6></div></td>`);
+        row.append(`<td><div class="d-flex align-items-center"><img src="../../assets/uploads/book/${book.img}" alt="off_white"><h6 class="ms-3">${book.title}</h6></div></td>`);
         row.append(`<td class="text-sm"><button class="action-btn print">${book.barcode}</button></td>`);
         row.append(`<td class="text-sm">${book.price}K</td>`);
         row.append(`<td class="text-sm">${book.quantity}</td>`);
@@ -46,9 +46,9 @@ function displayBooks(books) {
         if (isAdmin) {
             row.append(
                 `<td><button type="button" class="action-btn detail"><i class="fas fa-eye text-secondary" aria-hidden="true"></i></button>
-                <button type="button" class="action-btn edit"><i class="fas fa-pen-square text-secondary" aria-hidden="true"></i></button>
-                <button type="button" class="action-btn import"><i class="fas fa-cart-arrow-down text-secondary"ria-hidden="true"></i></button>
-                <button type="button" class="action-btn delete"><i class="fas fa-trash text-secondary" aria-hidden="true"></i></button></td>`
+                    <button type="button" class="action-btn edit"><i class="fas fa-pen-square text-secondary" aria-hidden="true"></i></button>
+                    <button type="button" class="action-btn import"><i class="fas fa-cart-arrow-down text-secondary"ria-hidden="true"></i></button>
+                    <button type="button" class="action-btn delete"><i class="fas fa-trash text-secondary" aria-hidden="true"></i></button></td>`
             );
         } else {
             row.append('<td><button type="button" class="action-btn detail"><i class="fas fa-eye text-secondary" aria-hidden="true"></i></button>');
@@ -162,7 +162,7 @@ function onConfirmDelButtonClick() {
 
 // Import module 
 function displayBookImport(book) {
-    $('#import-img-book').attr('src', `../assets/uploads/book/${book.img}`);
+    $('#import-img-book').attr('src', `../../assets/uploads/book/${book.img}`);
     $('#import-current-quantity').text(book.quantity);
     $('#import-quantity').val('');
     $('#import-quantity').removeClass('is-invalid');
@@ -223,7 +223,7 @@ function onConfirmImportButtonClick() {
 
 // Detail module
 function displayBookDetail(book) {
-    $('#detail-img-book').attr('src', `../assets/uploads/book/${book.img}`);
+    $('#detail-img-book').attr('src', `../../assets/uploads/book/${book.img}`);
     JsBarcode(".barcode-preview", book.barcode, {
         format: 'CODE128',
         width: 1,
@@ -256,7 +256,7 @@ function displayBookEdit(book) {
             $(this).prop('selected', false);
         }
     });
-    $('#preview').attr('src', `../assets/uploads/book/${book.img}`);
+    $('#preview').attr('src', `../../assets/uploads/book/${book.img}`);
     $('#img').val(book.img);
     $('#title').val(book.title);
     $('#author').val(book.author);
@@ -276,7 +276,7 @@ $('#edit-img-btn').on('click', onEditImgButtonClick);
 $('#next-edit-btn').on('click', onNextEditButtonClick);
 
 $('#remove-img-btn').on('click', function () {
-    $('#preview').attr('src', `../assets/uploads/book/${currentImg}`);
+    $('#preview').attr('src', `../../assets/uploads/book/${currentImg}`);
     $('#img').val(currentImg);
 });
 
@@ -338,7 +338,7 @@ function onEditImgButtonClick() {
         })
         .catch((error) => {
             $('#img').val('');
-            $('#preview').attr('src', `../assets/uploads/book/${currentImg}`);
+            $('#preview').attr('src', `../../assets/uploads/book/${currentImg}`);
         });
 }
 

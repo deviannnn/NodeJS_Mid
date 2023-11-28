@@ -4,23 +4,23 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
     <title>S T A R B O Y</title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <link href="https://db.onlinewebfonts.com/c/7035ead8175cc6b0fe6c460be5baca9a?family=Frisans+W01+Bold"
         rel="stylesheet">
     <!-- Nucleo Icons -->
-    <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="../../assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="../../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-    <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href="../../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
-    <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
+    <link id="pagestyle" href="../../assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet" />
     <!-- DataTables -->
-    <link rel="stylesheet" href="../assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="../../assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
 </head>
 
 <body class="g-sidenav-show bg-gray-100 g-sidenav-pinned">
@@ -30,7 +30,7 @@
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0" href="/" target="_blank">
-                <img src="../assets/img/logo-ct-dark.png" class="navbar-brand-img h-100 mb-2" alt="main_logo">
+                <img src="../../assets/img/logo-ct-dark.png" class="navbar-brand-img h-100 mb-2" alt="main_logo">
                 <span class="ms-1"
                     style="font-family: Frisans W01 Bold; font-size: 23px; color: #cb0c9f">STARBOOK</span>
             </a>
@@ -91,7 +91,7 @@
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">People Management</h6>
                 </li>
                 <li class="nav-item">
-                    <a class="change-screen nav-link active" href="" href="" data-screen="staff-list">
+                    <a class="change-screen nav-link " href="" href="" data-screen="staff-list">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512">
@@ -127,7 +127,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="change-screen nav-link " href="" data-screen="new-customer">
+                    <a class="change-screen nav-link active" href="" data-screen="new-customer">
                         <div
                             class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512">
@@ -210,87 +210,72 @@
         <div class="container-fluid py-3">
             <!-- content -->
             <div class="row">
-                <div class="col-12">
-                    <div class="card mb-4">
-                        <div class="card-header pb-0">
-                            <div class="d-lg-flex">
-                                <div class="col-12 col-sm-12 col-md-6">
-                                    <h5 class="mb-0">Account table</h5>
-                                    <p class="text-sm mb-0">
-                                        Tip: You can set <b>Lock</b> or <b>Unlock</b> the account by clicking on their
-                                        tag
-                                    </p>
-                                </div>
-                                <div class="ms-auto my-auto mt-lg-0 mt-4 action-for-admin">
-                                    <div class="ms-auto my-auto">
-                                        <a href="" class="change-screen btn bg-gradient-primary btn-sm mb-0"
-                                            data-screen="new-staff">+&nbsp;New Staff</a>
-                                        <button type="button" class="btn btn-outline-primary btn-sm mb-0"
-                                            data-bs-toggle="modal" data-bs-target="#import">Import</button>
-                                        <div class="modal fade" id="import" tabindex="-1" style="display: none;"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog mt-lg-10">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="ModalLabel">Import CSV</h5>
-                                                        <i class="fas fa-upload ms-3" aria-hidden="true"></i>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p>You can browse your computer for a file.</p>
-                                                        <input type="text" placeholder="Browse file..."
-                                                            class="form-control mb-3" onfocus="focused(this)"
-                                                            onfocusout="defocused(this)">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" value=""
-                                                                id="importCheck" checked="">
-                                                            <label class="custom-control-label" for="importCheck">I
-                                                                accept the terms and conditions</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn bg-gradient-secondary btn-sm"
-                                                            data-bs-dismiss="modal">Close</button>
-                                                        <button type="button"
-                                                            class="btn bg-gradient-primary btn-sm">Upload</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <button class="btn btn-outline-primary btn-sm export mb-0 mt-sm-0 mt-1"
-                                            data-type="csv" type="button" name="button">Export</button>
-                                    </div>
+                <div class="col-12 col-lg-5 mx-auto mt-5">
+                    <div class="card p-3 bg-white">
+                        <h5 class="font-weight-bolder mb-0">About Customer</h5>
+                        <p class="mb-0 text-sm">Mandatory informations</p>
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <label>Full Name</label>
+                                <input class="form-control" type="text" id="name" name="name"
+                                    placeholder="eg. Nguyen Van A" onfocus="focused(this)">
+                            </div>
+                            <div class="col-12 mt-3">
+                                <label>Gender</label>
+                                <div class="choices" data-type="select-one">
+                                    <select class="form-control" id="gender" name="gender" onfocus="focused(this)">
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
                                 </div>
                             </div>
+                            <div class="col-12 mt-3">
+                                <label>Phone Number</label>
+                                <input class="form-control" type="email" id="phone" name="phone"
+                                    placeholder="eg. 0987654321" onfocus="focused(this)">
+                            </div>
                         </div>
-                        <div class="card-body px-0 pt-0 pb-2">
-                            <div class="table-responsive p-0">
-                                <table id="example2" class="table align-items-center mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder">
-                                                User</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">
-                                                Status</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">
-                                                Employed</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2">
-                                                Locked</th>
-                                            <th style="width: 15%"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    </tbody>
-                                </table>
+                        <div class="button-row d-flex mt-4">
+                            <button class="btn bg-gradient-dark ms-auto mb-0" type="button" data-bs-toggle="modal"
+                                data-bs-target="#validate-modal">Next</button>
+                            <!-- Modal Validate -->
+                            <div class="modal fade" id="validate-modal" tabindex="-1" role="dialog"
+                                aria-labelledby="modal-default" aria-hidden="true">
+                                <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h6 class="modal-title" id="modal-title-default"><b>Verify Account
+                                                    Creation</b>
+                                            </h6>
+                                            <button type="button" class="btn-close text-dark" data-bs-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>After you verify this message, the system will send a link that
+                                                lasts for
+                                                <b>1 minute</b>
+                                                to use for the first login.
+                                            </p>
+                                            <p>Remind them to check their email immediately after you click the
+                                                confirm
+                                                button below.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn bg-gradient-success">Confirm</button>
+                                            <button type="button" class="btn bg-gradient-secondary ml-auto"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <footer class="footer pt-3 ">
+            <footer class="footer pt-7">
                 <div class="container-fluid">
                     <div class="row align-items-center justify-content-lg-between">
                         <div class="col-lg-6 mb-lg-0 mb-4">
@@ -308,223 +293,58 @@
             </footer>
         </div>
 
-        <!-- Modal Toggle Lock -->
-        <div class="modal fade" id="toggleLockModal" tabindex="-1" role="dialog" aria-labelledby="delete-modal"
-            aria-hidden="true">
-            <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
-                <div class="modal-content">
-                    <div class="modal-body p-4">
-                        <div class="text-center">
-                            <div class="swal2-icon swal2-info swal2-icon-show" style="display: flex; margin-top: 15px;">
-                                <div class="swal2-icon-content">?</div>
-                            </div>
-                            <h3 class="font-weight-bolder opacity-9 mt-4">Are you sure?</h3>
-                            <p id="lock-msg" style="display: none">
-                                You will <span class="text-bolder text-danger">Lock</span>
-                                <span class="lock-name text-bolder"></span>'s account and
-                                <span class="lock-gender"></span> won't be able to use this app anymore.
-                            </p>
-                            <p id="unlock-msg" style="display: none">
-                                You will <span class="text-bolder text-success">Unlock</span>
-                                <span class="lock-name"></span>'s account and
-                                <span class="lock-gender"></span> will continue to be able to use the app.
-                            </p>
-                        </div>
-                        <div class="d-flex justify-content-center mt-4">
-                            <button type="button" class="btn btn bg-gradient-success mx-2" data-bs-dismiss="modal"
-                                id="confirm-lock-btn">Yes!</button>
-                            <button type="button" class="btn bg-gradient-danger mx-1" data-bs-dismiss="modal">No,
-                                Cancel</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <!-- Modal Detail -->
         <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detail-modal"
-            aria-hidden="true" style="--bs-modal-width: 800px;">
+            aria-hidden="true">
             <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title text-bolder">Account Detail</h5>
+                        <h6 class="modal-title" id="modal-title-default"><b>Verify Account Creation</b></h6>
                         <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="row">
-                            <div class="col-3 text-center">
-                                <h6>Account Avatar</h6>
-                                <img id="detail-img-account" class="w-70" alt="product_image"
-                                    src="../assets/img/default.png">
-                            </div>
-                            <div class="col-9 text-center">
-                                <h6>Account Information</h6>
-                                <div class="row">
-                                    <div class="col-12 d-flex">
-                                        <h6 class="me-2">Id:</h6><span id="detail-id-account"></span>
-                                    </div>
-                                    <div class="col-12 d-flex">
-                                        <h6 class="me-2">Full Name:</h6><span id="detail-name-account"></span>
-                                    </div>
-                                    <div class="col-12 d-flex">
-                                        <h6 class="me-2">Gender:</h6><span class="text-capitalize"
-                                            id="detail-gender-account"></span>
-                                    </div>
-                                    <div class="col-12 d-flex">
-                                        <h6 class="me-2">Email:</h6><span id="detail-email-account"></span>
-                                    </div>
-                                    <div class="col-12 d-flex">
-                                        <h6 class="me-2">Phone:</h6><span id="detail-phone-account"></span>
-                                    </div>
-                                    <div class="col-12 d-flex">
-                                        <h6 class="me-2">Birthday:</h6><span id="detail-birthday-account"></span>
-                                    </div>
-                                    <div class="col-12 d-flex">
-                                        <h6 class="me-2">Address:</h6><span style="text-align: left" id="detail-address-account"></span>
-                                    </div>
-                                    <div class="col-12 d-flex">
-                                        <h6 class="m-0 me-2">Role:</h6><span id="detail-role-account"></span>
-                                    </div>
-                                    <div class="col-12 mt-2 d-flex">
-                                        <h6 class="m-0 me-2">Status:</h6>
-                                        <span id="detail-status-account"></span>
-                                        <h6 class="m-0 ms-5 me-2">Locked:</h6>
-                                        <span id="detail-locked-account"></span>
-                                    </div>
-
-                                    <div class="col-12 mt-2 d-flex">
-                                        <h6 class="me-2">Created Date:</h6><span id="detail-created-account"></span>
-                                    </div>
-                                    <div class="col-12 d-flex">
-                                        <h6 class="me-2">Updated Date:</h6><span id="detail-updated-account"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <p>After you verify this message, the system will send a link that lasts for <b>1 minute</b>
+                            to use for the
+                            first
+                            login.</p>
+                        <p>Remind them to check their email immediately after you press the confirm button below.</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn bg-gradient-secondary ml-auto"
-                            data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn bg-gradient-success">Confirm</button>
+                        <button type="button" class="btn btn-link  ml-auto" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Modal Edit -->
         <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="edit-modal"
-            aria-hidden="true" style="--bs-modal-width: 800px;">
+            aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title text-bolder">Edit Account</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">New message to @CT</h5>
                         <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="row mt-3">
-                            <div class="col-12 col-sm-6">
-                                <label>
-                                    Full Name
-                                    <span id="name-err" class="ms-2 text-xxs text-danger" style="display: none;"></span>
-                                </label>
-                                <input class="form-control" type="text" id="name" placeholder="eg. Nguyen Van A">
+                        <form>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                <input type="text" class="form-control" value="Creative Tim" id="recipient-name">
                             </div>
-                            <div class="col-12 col-sm-3 mt-3 mt-sm-0">
-                                <label>Gender</label>
-                                <div class="choices" data-type="select-one">
-                                    <select class="form-control" id="gender">
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                    </select>
-                                </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Message:</label>
+                                <textarea class="form-control" id="message-text"></textarea>
                             </div>
-                            <div class="col-12 col-sm-3 mt-3 mt-sm-0">
-                                <label>
-                                    Birthday
-                                    <span id="date-err" class="ms-2 text-xxs text-danger" style="display: none;"></span>
-                                </label>
-                                <input class="form-control" type="date" id="date">
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-12 col-sm-6">
-                                <label>
-                                    Email
-                                    <span id="email-err" class="ms-2 text-xxs text-danger"
-                                        style="display: none;"></span>
-                                </label>
-                                <input class="form-control" type="email" id="email" placeholder="eg. staff@gmail.com">
-                            </div>
-                            <div class="col-12 col-sm-6 mt-3 mt-sm-0">
-                                <label>
-                                    Phone Number
-                                    <span id="phone-err" class="ms-2 text-xxs text-danger"
-                                        style="display: none;"></span>
-                                </label>
-                                <input class="form-control" type="text" id="phone" placeholder="eg. 0987654321">
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-12 col-sm-4">
-                                <label>Address
-                                    <span id="num-err" class="ms-2 text-xxs text-danger" style="display: none;"></span>
-                                </label>
-                                <input class="form-control" type="text" id="num" placeholder="No.">
-                            </div>
-                            <div class="col-12 col-sm-8">
-                                <label>&nbsp;
-                                    <span id="street-err" class="text-xxs text-danger" style="display: none;"></span>
-                                </label>
-                                <input class="form-control" type="text" id="street" placeholder="Street">
-                            </div>
-                            <div class="col-12 col-sm-4">
-                                <label>&nbsp;
-                                    <span id="ward-err" class="text-xxs text-danger" style="display: none;"></span>
-                                </label>
-                                <input class="form-control" type="text" id="ward" placeholder="Ward">
-                            </div>
-                            <div class="col-12 col-sm-4">
-                                <label>&nbsp;
-                                    <span id="district-err" class="text-xxs text-danger" style="display: none;"></span>
-                                </label>
-                                <input class="form-control" type="text" id="district" placeholder="District">
-                            </div>
-                            <div class="col-12 col-sm-4 mt-3 mt-sm-0">
-                                <label>&nbsp;
-                                    <span id="city-err" class="text-xxs text-danger" style="display: none;"></span>
-                                </label>
-                                <input class="form-control" type="text" id="city" placeholder="City">
-                            </div>
-                        </div>
+                        </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn bg-gradient-dark" id="next-edit-btn">Next</button>
-                    </div>
-                    <!-- Modal Confirm Edit -->
-                    <div class="modal fade" id="verifyEditModal" tabindex="-1" role="dialog"
-                        aria-labelledby="delete-modal" aria-hidden="true">
-                        <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
-                            <div class="modal-content">
-                                <div class="modal-body p-4">
-                                    <div class="text-center">
-                                        <div class="swal2-icon swal2-info swal2-icon-show"
-                                            style="display: flex; margin-top: 15px;">
-                                            <div class="swal2-icon-content">?</div>
-                                        </div>
-                                        <h3 class="font-weight-bolder opacity-9 mt-4">Are you sure?</h3>
-                                        <p>The infomation of this Staff will be changed</p>
-                                    </div>
-                                    <div class="d-flex justify-content-center mt-4">
-                                        <button type="button" class="btn btn bg-gradient-success mx-2"
-                                            data-bs-dismiss="modal" id="confirm-edit-btn">Yes!</button>
-                                        <button type="button" class="btn bg-gradient-danger mx-1"
-                                            data-bs-dismiss="modal">No, Cancel</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <button type="button" class="btn bg-gradient-primary">Send message</button>
                     </div>
                 </div>
             </div>
@@ -541,11 +361,11 @@
                                 <div class="swal2-icon-content">!</div>
                             </div>
                             <h3 class="font-weight-bolder opacity-9 mt-4">Are you sure?</h3>
-                            <p>You won't be able to revert this <span class="del-name-account text-bolder"></span>!</p>
+                            <p>You won't be able to revert this!</p>
                         </div>
                         <div class="d-flex justify-content-center mt-4">
-                            <button type="button" class="btn btn bg-gradient-success mx-2" data-bs-dismiss="modal"
-                                id="confirm-del-btn">Yes, Delete it!</button>
+                            <button type="button" class="btn btn bg-gradient-success mx-2" data-bs-toggle="modal"
+                                data-bs-target="#successModal" data-bs-dismiss="modal">Yes, Delete it!</button>
                             <button type="button" class="btn bg-gradient-danger mx-1" data-bs-dismiss="modal">No,
                                 Cancel</button>
                         </div>
@@ -570,12 +390,11 @@
                                 <div class="swal2-success-circular-line-right"
                                     style="background-color: rgb(255, 255, 255);"></div>
                             </div>
-                            <h3 id="modal-success-title" class="font-weight-bolder opacity-9 mt-4"></h3>
-                            <p id="modal-success-msg"></p>
+                            <h3 class="font-weight-bolder opacity-9 mt-4">Deleted!</h3>
+                            <p>Your product has been deleted.</p>
                         </div>
                         <div class="d-flex justify-content-center mt-4">
-                            <button type="button" class="btn bg-gradient-info change-screen" data-screen="staff-list"
-                                data-bs-dismiss="modal">OK</button>
+                            <button type="button" class="btn bg-gradient-info" data-bs-dismiss="modal">OK</button>
                         </div>
                     </div>
                 </div>
@@ -595,7 +414,7 @@
                                 </span>
                             </div>
                             <h3 class="font-weight-bolder opacity-9 mt-4">Failed!</h3>
-                            <p id="message-modal-fail"></p>
+                            <p>An error occurred while deleting the product.</p>
                         </div>
                         <div class="d-flex justify-content-center mt-4">
                             <button type="button" class="btn bg-gradient-info" data-bs-dismiss="modal">OK</button>
@@ -607,10 +426,10 @@
     </main>
 
     <!--   Core JS Files   -->
-    <script src="../assets/js/core/popper.min.js"></script>
-    <script src="../assets/js/core/bootstrap.min.js"></script>
-    <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <script src="../../assets/js/core/popper.min.js"></script>
+    <script src="../../assets/js/core/bootstrap.min.js"></script>
+    <script src="../../assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="../../assets/js/plugins/smooth-scrollbar.min.js"></script>
     <!-- page script -->
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
@@ -622,22 +441,16 @@
         }
     </script>
 
-    <!-- Jquery -->
-    <script src="../assets/plugins/jquery/jquery.min.js"></script>
-
-    <!-- DataTables -->
-    <script src="../assets/plugins/datatables/jquery.dataTables.js"></script>
-    <script src="../assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
-
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="../assets/js/soft-ui-dashboard.min.js?v=1.1.1"></script>
+    <script src="../../assets/js/soft-ui-dashboard.min.js?v=1.1.1"></script>
 
+    <!-- Jquery -->
+    <script src="../../assets/plugins/jquery/jquery.min.js"></script>
     <!-- renderer-process -->
     <!-- change-screen script -->
-    <script src="../renderer-process/change-screen.renderer.js"></script>
-    <script src="../renderer-process/staff-list.renderer.js"></script>
+    <script src="../../renderer-process/change-screen.renderer.js"></script>
 </body>
 
 </html>

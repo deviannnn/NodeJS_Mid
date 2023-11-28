@@ -1,6 +1,9 @@
 const { ipcMain } = require('electron');
+const Store = require('electron-store');
 const path = require("path");
 const bcrypt = require('bcrypt');
+
+const store = new Store();
 
 const Account = require('../models/account.model');
 
@@ -18,10 +21,26 @@ ipcMain.handle('login', async (event, data) => {
             return { success: false, message: 'Your account hasn\'t been actived.' };
         }
 
-        return { success: true, account: { staffId: account.staffId, role: account.role, avatar: account.avatar, name: account.name } };
+        store.set('loggedInAccount', account);
+
+        global.win.loadFile(path.join(global.screenPath, `${account.role}`, 'book-list.html'));
+        global.win.maximize();
+
+        return { success: true };
     } catch (error) {
         return { success: false, message: error.message };
     }
+});
+
+ipcMain.on('logout', (event) => {
+    store.clear();
+    global.win.unmaximize();
+    return global.win.loadFile(path.join(global.screenPath, 'login.html'));
+});
+
+ipcMain.handle('get-logged-account', (event) => {
+    const account = store.get('loggedInAccount', null);
+    return { staffId: account.staffId, role: account.role, avatar: account.avatar, name: account.name };
 });
 
 ipcMain.handle('get-all-account', async () => {

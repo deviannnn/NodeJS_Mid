@@ -18,6 +18,11 @@ contextBridge.exposeInMainWorld('bookAPI', {
 
 contextBridge.exposeInMainWorld('accountAPI', {
   login: (data) => ipcRenderer.invoke('login', data),
+  logout: () => ipcRenderer.send('logout'),
+  getLoggedAccount: async () => {
+    const loggedInAccount = await ipcRenderer.invoke('get-logged-account');
+    return loggedInAccount;
+  },
   getAll: () => ipcRenderer.invoke('get-all-account'),
   get: (email) => ipcRenderer.invoke('get-account', email),
   add: (data) => ipcRenderer.invoke('add-account', data),

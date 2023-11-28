@@ -1,12 +1,16 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
+const Store = require('electron-store');
 const path = require("path");
 const mongoose = require('mongoose');
+
+const store = new Store();
+
 require('dotenv').config();
 
 require('./controllers/book.controller');
 require('./controllers/account.controller');
 
-const screenPath = path.join(__dirname, 'screens');
+global.screenPath = path.join(__dirname, 'screens');
 
 function connectDB() {
     try {
@@ -18,10 +22,10 @@ function connectDB() {
     }
 }
 
-let win;
+global.win;
 
 function createWindow() {
-    win = new BrowserWindow({
+    global.win = new BrowserWindow({
         titleBarStyle: "hidden",
         titleBarOverlay: false,
         resizable: false,
@@ -30,18 +34,27 @@ function createWindow() {
         },
     });
 
-    ipcMain.on('go-to-screen', (event, screen) => {
-        if (screen === 'login') {
-            win.setSize(1044, 640); 
-        } else {
-            win.maximize();
-        }
-        win.loadFile(path.join(screenPath, `${screen}.html`));
-    });
-
     // First screen
-    win.loadFile(path.join(screenPath, 'login.html'));
+    global.win.loadFile(path.join(global.screenPath, 'login.html'));
 }
+
+ipcMain.on('go-to-screen', (event, screen) => {
+    const storedAccount = store.get('loggedInAccount');
+
+    if (screen === 'pos') {
+        return global.win.loadFile(path.join(global.screenPath, `${screen}.html`));
+    }
+
+    if (storedAccount) {
+        switch (storedAccount.role) {
+            case 'staff':
+                return global.win.loadFile(path.join(global.screenPath, 'staff', `${screen}.html`));
+
+            case 'admin':
+                return global.win.loadFile(path.join(global.screenPath, 'admin', `${screen}.html`));
+        }
+    }
+});
 
 app.whenReady().then(() => {
     connectDB();
