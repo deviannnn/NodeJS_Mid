@@ -190,7 +190,7 @@
                         <div class="input-group">
                             <span class="input-group-text text-body"><i class="fas fa-search"
                                     aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" placeholder="Type here..." onfocus="focused(this)"
+                            <input type="text" class="form-control" placeholder="Type here..."
                                 onfocusout="defocused(this)">
                         </div>
                     </div>
@@ -217,17 +217,24 @@
                 <div class="row gx-4">
                     <div class="col-auto">
                         <div class="avatar avatar-xl position-relative">
-                            <img alt="profile_image" class="w-100 border-radius-lg shadow-sm account-avatar">
+                            <img src="../../assets/img/illustrations/rocket-dark.png"
+                                class="w-100 border-radius-lg shadow-sm dropdown-toggle account-avatar"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <ul class="dropdown-menu position-absolute" aria-labelledby="dropdownMenuButton"
+                                style="--bs-dropdown-min-width: 4rem;">
+                                <li>
+                                    <a class="dropdown-item border-radius-md" href="javascript:;">Change</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item border-radius-md" href="javascript:;">Remove</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     <div class="col-auto my-auto">
                         <div class="h-100">
-                            <h5 class="mb-1">
-                                Alec Thompson
-                            </h5>
-                            <p class="mb-0 font-weight-bold text-sm">
-                                Admin
-                            </p>
+                            <h5 class="mb-1" id="display-name"></h5>
+                            <p class="mb-0 font-weight-bold text-sm text-capitalize" id="display-role"></p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3">
@@ -307,15 +314,16 @@
                                 <div class="col-8">
                                     <label class="form-label">Full Name</label>
                                     <div class="input-group">
-                                        <input id="fullname" name="fullname" class="form-control" type="text"
-                                            required="required" onfocus="focused(this)">
+                                        <input id="name" class="form-control" type="text" disabled>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <label class="form-label">I'm</label>
-                                    <div class="input-group">
-                                        <input id="gender" name="gender" class="form-control" type="text"
-                                            required="required" onfocus="focused(this)">
+                                    <div class="choices" data-type="select-one">
+                                        <select class="form-control" id="gender" disabled>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -324,22 +332,19 @@
                                 <div class="col-4">
                                     <label class="form-label mt-4">Birthday</label>
                                     <div class="input-group">
-                                        <input id="birthday" name="birthday" class="form-control" type="date"
-                                            onfocus="focused(this)">
+                                        <input id="birthday" class="form-control" type="date" disabled>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <label class="form-label mt-4">Email</label>
                                     <div class="input-group">
-                                        <input id="email" name="email" class="form-control" type="email"
-                                            onfocus="focused(this)">
+                                        <input id="email" class="form-control" type="email" disabled>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <label class="form-label mt-4">Phone Number</label>
                                     <div class="input-group">
-                                        <input id="phone" name="phone" class="form-control" type="text"
-                                            onfocus="focused(this)">
+                                        <input id="phone" class="form-control" type="text" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -347,40 +352,36 @@
                                 <div class="col-2">
                                     <label class="form-label mt-4 custom-cursor-default-hover">Address</label>
                                     <div class="input-group">
-                                        <input id="address_num" name="address_num" class="form-control" type="text"
-                                            onfocus="focused(this)">
+                                        <input id="num" class="form-control" type="text" disabled>
                                     </div>
                                 </div>
                                 <div class="col-4">
                                     <label class="form-label mt-4">&nbsp;</label>
                                     <div class="input-group">
-                                        <input id="address_street" name="address_street" class="form-control"
-                                            type="text" onfocus="focused(this)">
+                                        <input id="street" class="form-control" type="text" disabled>
                                     </div>
                                 </div>
                                 <div class="col-2">
                                     <label class="form-label mt-4">&nbsp;</label>
                                     <div class="input-group">
-                                        <input id="address_ward" name="address_ward" class="form-control" type="text"
-                                            onfocus="focused(this)">
+                                        <input id="ward" class="form-control" type="text" disabled>
                                     </div>
                                 </div>
                                 <div class="col-2">
                                     <label class="form-label mt-4">&nbsp;</label>
                                     <div class="input-group">
-                                        <input id="address_district" name="address_district" class="form-control"
-                                            type="text" onfocus="focused(this)">
+                                        <input id="district" class="form-control" type="text" disabled>
                                     </div>
                                 </div>
                                 <div class="col-2">
                                     <label class="form-label mt-4">&nbsp;</label>
                                     <div class="input-group">
-                                        <input id="address_city" name="address_city" class="form-control" type="text"
-                                            onfocus="focused(this)">
+                                        <input id="city" class="form-control" type="text" disabled>
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Update profile</button>
+                            <button class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0"
+                                id="update-profile-btn">Update profile</button>
 
                         </div>
                     </div>
@@ -392,24 +393,31 @@
                         <div class="card-body pt-0">
                             <div class="row">
                                 <div class="col-4">
-                                    <label class="form-label">Current password</label>
+                                    <label class="form-label">
+                                        Current password
+                                        <span id="cur-pw-err" class="ms-2 text-xxs text-danger"></span>
+                                    </label>
                                     <div class="form-group">
-                                        <input class="form-control" type="password" placeholder="Current password"
-                                            onfocus="focused(this)">
+                                        <input id="cur-pw" class="form-control" type="password"
+                                            placeholder="Current password">
                                     </div>
                                 </div>
                                 <div class="col-4">
-                                    <label class="form-label custom-cursor-default-hover">New password</label>
+                                    <label class="form-label custom-cursor-default-hover">
+                                        New password
+                                    </label>
                                     <div class="form-group">
-                                        <input class="form-control is-valid" type="password" placeholder="New password"
-                                            onfocus="focused(this)">
+                                        <input id="new-pw" class="form-control" type="password"
+                                            placeholder="New password">
                                     </div>
                                 </div>
                                 <div class="col-4">
-                                    <label class="form-label">Confirm new password</label>
+                                    <label class="form-label">
+                                        Confirm new password
+                                    </label>
                                     <div class="form-group">
-                                        <input class="form-control is-invalid" type="password"
-                                            placeholder="Confirm password" onfocus="focused(this)">
+                                        <input id="confirm-pw" class="form-control" type="password"
+                                            placeholder="Confirm password">
                                     </div>
                                 </div>
                             </div>
@@ -419,21 +427,18 @@
                                 Please follow this guide for a strong password:
                             </p>
                             <ul class="text-muted ps-4 mb-0 float-start">
-                                <li>
+                                <li id="pw-guild-1">
                                     <span class="text-sm">One special characters</span>
                                 </li>
-                                <li>
-                                    <span class="text-sm">Min 6 characters</span>
-                                </li>
-                                <li>
+                                <li id="pw-guild-2">
                                     <span class="text-sm">One number (2 are recommended)</span>
                                 </li>
-                                <li>
-                                    <span class="text-sm">Change it often</span>
+                                <li id="pw-guild-3">
+                                    <span class="text-sm">Min 10 characters</span>
                                 </li>
                             </ul>
-                            <button class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0"
-                                onclick="soft.showSwal('success-message')">Update password</button>
+                            <button class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0" id="update-pw-btn">Update
+                                password</button>
                         </div>
                     </div>
                 </div>
@@ -457,86 +462,6 @@
             </footer>
         </div>
 
-
-        <!-- Modal Detail -->
-        <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detail-modal"
-            aria-hidden="true">
-            <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h6 class="modal-title" id="modal-title-default"><b>Verify Account Creation</b></h6>
-                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>After you verify this message, the system will send a link that lasts for <b>1 minute</b>
-                            to use for the
-                            first
-                            login.</p>
-                        <p>Remind them to check their email immediately after you press the confirm button below.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn bg-gradient-success">Confirm</button>
-                        <button type="button" class="btn btn-link  ml-auto" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal Edit -->
-        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="edit-modal"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">New message to @CT</h5>
-                        <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                <input type="text" class="form-control" value="Creative Tim" id="recipient-name">
-                            </div>
-                            <div class="form-group">
-                                <label for="message-text" class="col-form-label">Message:</label>
-                                <textarea class="form-control" id="message-text"></textarea>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn bg-gradient-primary">Send message</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal Delete -->
-        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="delete-modal"
-            aria-hidden="true">
-            <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
-                <div class="modal-content">
-                    <div class="modal-body p-4">
-                        <div class="text-center">
-                            <div class="swal2-icon swal2-warning swal2-icon-show"
-                                style="display: flex; margin-top: 15px;">
-                                <div class="swal2-icon-content">!</div>
-                            </div>
-                            <h3 class="font-weight-bolder opacity-9 mt-4">Are you sure?</h3>
-                            <p>You won't be able to revert this!</p>
-                        </div>
-                        <div class="d-flex justify-content-center mt-4">
-                            <button type="button" class="btn btn bg-gradient-success mx-2" data-bs-toggle="modal"
-                                data-bs-target="#successModal" data-bs-dismiss="modal">Yes, Delete it!</button>
-                            <button type="button" class="btn bg-gradient-danger mx-1" data-bs-dismiss="modal">No,
-                                Cancel</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- Modal Success -->
         <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="success-modal"
             aria-hidden="true">
@@ -554,11 +479,12 @@
                                 <div class="swal2-success-circular-line-right"
                                     style="background-color: rgb(255, 255, 255);"></div>
                             </div>
-                            <h3 class="font-weight-bolder opacity-9 mt-4">Deleted!</h3>
-                            <p>Your product has been deleted.</p>
+                            <h3 id="modal-success-title" class="font-weight-bolder opacity-9 mt-4"></h3>
+                            <p id="modal-success-msg"></p>
                         </div>
                         <div class="d-flex justify-content-center mt-4">
-                            <button type="button" class="btn bg-gradient-info" data-bs-dismiss="modal">OK</button>
+                            <button type="button" class="btn bg-gradient-info change-screen" data-screen="profile"
+                                data-bs-dismiss="modal">OK</button>
                         </div>
                     </div>
                 </div>
@@ -578,7 +504,7 @@
                                 </span>
                             </div>
                             <h3 class="font-weight-bolder opacity-9 mt-4">Failed!</h3>
-                            <p>An error occurred while deleting the product.</p>
+                            <p id="message-modal-fail"></p>
                         </div>
                         <div class="d-flex justify-content-center mt-4">
                             <button type="button" class="btn bg-gradient-info" data-bs-dismiss="modal">OK</button>
@@ -615,6 +541,7 @@
     <!-- renderer-process -->
     <!-- change-screen script -->
     <script src="../../renderer-process/change-screen.renderer.js"></script>
+    <script src="../../renderer-process/profile.renderer.js"></script>\
 </body>
 
 </html>

@@ -29,6 +29,7 @@ contextBridge.exposeInMainWorld('accountAPI', {
   edit: (data) => ipcRenderer.invoke('edit-info-account', data),
   delete: (staffId) => ipcRenderer.invoke('delete-account', staffId),
   toggleLock: (staffId) => ipcRenderer.invoke('toggle-lock-account', staffId),
+  changePassword: (data) => ipcRenderer.invoke('change-pw-account', data),
   chooseImage: () => ipcRenderer.invoke('choose-img-account'),
   checkEmail: (email) => ipcRenderer.invoke('check-email', email),
   checkPhone: (phone) => ipcRenderer.invoke('check-phone', phone),

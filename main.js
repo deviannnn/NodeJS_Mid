@@ -1,27 +1,16 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const Store = require('electron-store');
 const path = require("path");
-const mongoose = require('mongoose');
-
-const store = new Store();
 
 require('dotenv').config();
-
 require('./controllers/book.controller');
 require('./controllers/account.controller');
 
+const store = new Store();
+
+const { connectDB } = require('./utils');
+
 global.screenPath = path.join(__dirname, 'screens');
-
-function connectDB() {
-    try {
-        const dbUrl = app.isPackaged ? process.env.DB_PROD_CONSTRING : process.env.DB_DEV_CONSTRING;
-        mongoose.connect(dbUrl).then(() => console.log(`Connected to ${app.isPackaged ? 'Production' : 'Development'} DB!`));
-    } catch (error) {
-        console.error('Error connecting to the database:', error);
-        throw error;
-    }
-}
-
 global.win;
 
 function createWindow() {

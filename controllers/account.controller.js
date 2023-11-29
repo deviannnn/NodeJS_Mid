@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt');
 const store = new Store();
 
 const Account = require('../models/account.model');
+const { generateMemberCode } = require('../utils');
 
 ipcMain.handle('login', async (event, data) => {
     try {
@@ -40,7 +41,7 @@ ipcMain.on('logout', (event) => {
 
 ipcMain.handle('get-logged-account', (event) => {
     const account = store.get('loggedInAccount', null);
-    return { staffId: account.staffId, role: account.role, avatar: account.avatar, name: account.name };
+    return account;
 });
 
 ipcMain.handle('get-all-account', async () => {
@@ -168,6 +169,35 @@ ipcMain.handle('toggle-lock-account', async (event, staffId) => {
     }
 });
 
+ipcMain.handle('change-pw-account', async (event, data) => {
+    try {
+        const existingAccount = await Account.findOne({ staffId: data.staffId });
+
+        if (!existingAccount) {
+            return ({ success: false, message: 'Account not found.' });
+        }
+
+        if (!data.curPassword || !bcrypt.compareSync(data.curPassword, existingAccount.password)) {
+            return ({ success: false, curPwErr: true, message: 'Current password is incorrect.' });
+        }
+
+        const updatedAccount = await Account.findOneAndUpdate(
+            { staffId: existingAccount.staffId },
+            {
+                $set: {
+                    password: bcrypt.hashSync(data.newPassword, 10),
+                    updated: new Date()
+                }
+            },
+            { new: true }
+        );
+
+        return { success: true, title: 'Updated!', message: 'Your password has been changed.' };
+    } catch (error) {
+        return { success: false, message: error.message };
+    }
+});
+
 ipcMain.handle('check-email', async (event, email) => {
     try {
         const existing = await Account.findOne({ email });
@@ -185,24 +215,3 @@ ipcMain.handle('check-phone', async (event, phone) => {
         return { success: false, message: error.message };
     }
 });
-
-function generateMemberCode() {
-    const timestamp = new Date().getTime().toString();
-    const randomNum = Math.floor(1000 + Math.random() * 9000);
-    return `${timestamp}-${randomNum}`;
-}
-
-async function copyFileToDirectory(sourcePath, targetDirectory) {
-    try {
-        await fss.mkdir(targetDirectory, { recursive: true });
-
-        const targetFileName = `account_${Date.now()}${path.extname(sourcePath)}`;
-        const targetPath = path.join(targetDirectory, targetFileName);
-
-        await fss.copyFile(sourcePath, targetPath);
-
-        return targetFileName;
-    } catch (error) {
-        return null;
-    }
-}

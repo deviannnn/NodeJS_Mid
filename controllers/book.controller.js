@@ -1,9 +1,9 @@
 const { ipcMain, dialog } = require('electron');
 const fs = require('fs');
-const fss = require('fs').promises;
-const path = require('path');
 
 const Book = require('../models/book.model');
+const { copyFileToDirectory } = require('../utils');
+
 
 ipcMain.handle('get-all-book', async () => {
     try {
@@ -30,13 +30,10 @@ ipcMain.handle('get-book', async (event, barcode) => {
 ipcMain.handle('delete-book', async (event, barcode) => {
     try {
         const existingBook = await Book.findOneAndDelete({ barcode });
-        
+
         if (!existingBook) {
             return ({ success: false, message: 'Book not found.' });
         }
-
-        const imgPath = path.join(__dirname, '..', 'assets/uploads/book', existingBook.img);
-        await fss.unlink(imgPath);
 
         return { success: true, title: 'Deleted!', message: 'This book has been deleted.' };
     } catch (error) {
@@ -46,10 +43,7 @@ ipcMain.handle('delete-book', async (event, barcode) => {
 
 ipcMain.handle('add-book', async (event, data) => {
     try {
-        const targetImagePath = await copyFileToDirectory(
-            data.img,
-            path.join(__dirname, '..', 'assets/uploads/book')
-        );
+        const targetImagePath = await copyFileToDirectory('book', data.img);
 
         const imgPath = targetImagePath || 'default-book.png';
 
@@ -123,10 +117,7 @@ ipcMain.handle('edit-book', async (event, data) => {
 
         let imgPath = data.img;
         if (imgPath !== existingBook.img) {
-            const targetImagePath = await copyFileToDirectory(
-                imgPath,
-                path.join(__dirname, '..', 'assets/uploads/book')
-            );
+            const targetImagePath = await copyFileToDirectory('book', data.img);
             imgPath = targetImagePath || 'default-book.png';
         }
 
@@ -199,20 +190,5 @@ async function updateStatus(bookBarcode, quantity) {
         return { success: true };
     } catch (error) {
         return { success: false, message: error.message };
-    }
-}
-
-async function copyFileToDirectory(sourcePath, targetDirectory) {
-    try {
-        await fss.mkdir(targetDirectory, { recursive: true });
-
-        const targetFileName = `book_${Date.now()}${path.extname(sourcePath)}`;
-        const targetPath = path.join(targetDirectory, targetFileName);
-
-        await fss.copyFile(sourcePath, targetPath);
-
-        return targetFileName;
-    } catch (error) {
-        return null;
     }
 }

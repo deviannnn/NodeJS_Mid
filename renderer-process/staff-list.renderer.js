@@ -26,7 +26,7 @@ function displayAccounts(accounts) {
         <td>
             <div class="d-flex py-1">
                 <div>
-                    <img src="../../../assets/uploads/account/${account.avatar}" class="avatar avatar-sm me-3" ">
+                    <img src="../../assets/uploads/account/${account.avatar}" class="avatar avatar-sm me-3" ">
                 </div>
                 <div class="d-flex flex-column justify-content-center">
                     <h6 h6 class="mb-0 text-sm">${account.name}</h6>

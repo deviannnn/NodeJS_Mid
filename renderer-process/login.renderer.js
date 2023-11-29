@@ -1,7 +1,7 @@
 $('#sign-in-btn').on('click', () => {
     const email = $('#email').val().trim();
     const password = $('#password').val().trim();
-    localStorage.setItem('welcome', true);
+    localStorage.setItem('welcome', 'true');
     window.accountAPI.login({ email, password })
         .then((response) => {
             if (!response.success) {

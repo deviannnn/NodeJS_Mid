@@ -7,14 +7,10 @@ $(document).ready(async function () {
 
     const nameParts = loggedAccount.name.split(' ');
     $('.account-name').text(`${nameParts[nameParts.length - 2]}  ${nameParts[nameParts.length - 1]}`);
-    
-    const fisrtWelcome = localStorage.getItem('welcome');
-    console.log(fisrtWelcome);
-    if (fisrtWelcome === true) {
-        $('#welcome-alert').addClass('show');
-        console.log('dsdsds')
 
-        localStorage.setItem('welcome', false);
+    if (localStorage.getItem('welcome') === 'true') {
+        $('#welcome-alert').addClass('show');
+        localStorage.setItem('welcome', 'false');
     }
 
     $('.account-avatar').attr('src', `../../assets/uploads/account/${loggedAccount.avatar}`);
