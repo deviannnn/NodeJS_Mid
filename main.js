@@ -1,8 +1,10 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
+
+if (require('electron-squirrel-startup')) app.quit();
+
 const Store = require('electron-store');
 const path = require("path");
 
-require('dotenv').config();
 require('./controllers/book.controller');
 require('./controllers/account.controller');
 
@@ -18,6 +20,7 @@ function createWindow() {
         titleBarStyle: "hidden",
         titleBarOverlay: false,
         resizable: false,
+        icon: path.join(__dirname, 'assets/icon.png'),
         webPreferences: {
             preload: path.join(__dirname, "preload.js"),
         },

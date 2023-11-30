@@ -1,22 +1,17 @@
-const { app } = require("electron");
 const fs = require('fs').promises;
 const path = require('path');
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 const connectDB = () => {
-    try {
-        const dbUrl = app.isPackaged ? process.env.DB_PROD_CONSTRING : process.env.DB_DEV_CONSTRING;
-        mongoose.connect(dbUrl).then(() => console.log(`Connected to ${app.isPackaged ? 'Production' : 'Development'} DB!`));
-    } catch (error) {
-        console.error('Error connecting to the database:', error);
-        throw error;
-    }
+    const dbUrl = 'mongodb+srv://admin:admin@lytuanan1911.jtassu8.mongodb.net/StarBook_dev?retryWrites=true&w=majority'
+    mongoose.connect(dbUrl);
 }
 
 const copyFileToDirectory = async (type, sourcePath) => {
     try {
         const targetDirectory = path.join(__dirname, 'assets/uploads', type);
-        
+
         await fs.mkdir(targetDirectory, { recursive: true });
 
         const targetFileName = `${type}_${Date.now()}${path.extname(sourcePath)}`;
