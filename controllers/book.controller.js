@@ -43,10 +43,6 @@ ipcMain.handle('delete-book', async (event, barcode) => {
 
 ipcMain.handle('add-book', async (event, data) => {
     try {
-        const targetImagePath = await copyFileToDirectory('book', data.img);
-
-        const imgPath = targetImagePath || 'default-book.png';
-
         const bookData = {
             barcode: data.barcode,
             category: data.category,
@@ -56,7 +52,7 @@ ipcMain.handle('add-book', async (event, data) => {
                 publisher: data.publisher,
                 year: data.year,
             },
-            img: imgPath,
+            img: data.img,
             price: data.price
         };
 
@@ -109,18 +105,6 @@ ipcMain.handle('import-book', async (event, data) => {
 
 ipcMain.handle('edit-book', async (event, data) => {
     try {
-        const existingBook = await Book.findOne({ barcode: data.barcode });
-
-        if (!existingBook) {
-            return { success: false, message: 'Book not found.' };
-        }
-
-        let imgPath = data.img;
-        if (imgPath !== existingBook.img) {
-            const targetImagePath = await copyFileToDirectory('book', data.img);
-            imgPath = targetImagePath || 'default-book.png';
-        }
-
         const updatedBook = await Book.findOneAndUpdate(
             { barcode: data.barcode },
             {
@@ -141,6 +125,10 @@ ipcMain.handle('edit-book', async (event, data) => {
             { new: true }
         );
 
+        if (!updatedBook) {
+            return { success: false, message: 'Book not found.' };
+        }
+
         return { success: true, title: 'Updated!', message: 'Information about this book has been changed.' };
     } catch (error) {
         return { success: false, message: error.message };
@@ -155,7 +143,7 @@ ipcMain.handle('choose-img-book', async () => {
         const fileContent = fs.readFileSync(filePath, { encoding: 'base64' });
         const base64Image = `data:image/${filePath.split('.').pop()};base64,${fileContent}`;
 
-        return { filePath, base64Image };
+        return { base64Image };
     }
 
     return null;

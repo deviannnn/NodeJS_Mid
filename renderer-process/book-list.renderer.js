@@ -36,7 +36,7 @@ function displayBooks(books) {
 
     books.forEach(book => {
         const row = $('<tr>');
-        row.append(`<td><div class="d-flex align-items-center"><img src="../../assets/uploads/book/${book.img}" alt="off_white"><h6 class="ms-3">${book.title}</h6></div></td>`);
+        row.append(`<td><div class="d-flex align-items-center"><img src="${book.img !== '' ? book.img : '../../assets/img/default-book.png'}" alt="off_white"><h6 class="ms-3">${book.title}</h6></div></td>`);
         row.append(`<td class="text-sm"><button class="action-btn print">${book.barcode}</button></td>`);
         row.append(`<td class="text-sm">${book.price}K</td>`);
         row.append(`<td class="text-sm">${book.quantity}</td>`);
@@ -162,7 +162,7 @@ function onConfirmDelButtonClick() {
 
 // Import module 
 function displayBookImport(book) {
-    $('#import-img-book').attr('src', `../../assets/uploads/book/${book.img}`);
+    $('#import-img-book').attr('src', `${book.img !== '' ? book.img : '../../assets/img/default-book.png'}`);
     $('#import-current-quantity').text(book.quantity);
     $('#import-quantity').val('');
     $('#import-quantity').removeClass('is-invalid');
@@ -223,7 +223,7 @@ function onConfirmImportButtonClick() {
 
 // Detail module
 function displayBookDetail(book) {
-    $('#detail-img-book').attr('src', `../../assets/uploads/book/${book.img}`);
+    $('#detail-img-book').attr('src', `${book.img !== '' ? book.img : '../../assets/img/default-book.png'}`);
     JsBarcode(".barcode-preview", book.barcode, {
         format: 'CODE128',
         width: 1,
@@ -246,6 +246,7 @@ function displayBookDetail(book) {
 
 // Edit module
 let currentImg = '';
+let curEditImg = '';
 function displayBookEdit(book) {
     currentImg = book.img;
 
@@ -256,7 +257,7 @@ function displayBookEdit(book) {
             $(this).prop('selected', false);
         }
     });
-    $('#preview').attr('src', `../../assets/uploads/book/${book.img}`);
+    $('#preview').attr('src', `${currentImg !== '' ? currentImg : '../../assets/img/default-book.png'}`);
     $('#img').val(book.img);
     $('#title').val(book.title);
     $('#author').val(book.author);
@@ -276,8 +277,8 @@ $('#edit-img-btn').on('click', onEditImgButtonClick);
 $('#next-edit-btn').on('click', onNextEditButtonClick);
 
 $('#remove-img-btn').on('click', function () {
-    $('#preview').attr('src', `../../assets/uploads/book/${currentImg}`);
-    $('#img').val(currentImg);
+    curEditImg = '';
+    $('#preview').attr('src', `${currentImg !== '' ? currentImg : '../../assets/img/default-book.png'}`);
 });
 
 $('#category').on('change', function () {
@@ -305,7 +306,7 @@ async function onConfirmEditButtonClick() {
             barcode: currentBarcode,
             newBarcode: getValue('#barcode'),
             price: getValue('#price'),
-            img: getValue('#img'),
+            img: curEditImg !== '' ? curEditImg : currentImg,
         };
 
         window.bookAPI.edit(data)
@@ -331,9 +332,8 @@ async function onConfirmEditButtonClick() {
 
 function onEditImgButtonClick() {
     window.bookAPI.chooseImage()
-        .then(({ filePath, base64Image }) => {
-            $('#img').val(filePath);
-
+        .then(({ base64Image }) => {
+            curEditImg = base64Image;
             $('#preview').attr('src', base64Image);
         })
         .catch((error) => {

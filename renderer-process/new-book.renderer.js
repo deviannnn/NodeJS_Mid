@@ -36,11 +36,6 @@ $('#confirm-btn').on('click', onConfirmButtonClick);
 
 $('#edit-img-btn').on('click', onEditImgButtonClick);
 
-$('#remove-img-btn').on('click', function () {
-    $('#img').val('');
-    $('#preview').attr('src', '../assets/img/default-book.png');
-});
-
 async function onNextButtonClick() {
     const isValid = await validateAllFields();
     if (isValid) {
@@ -57,6 +52,24 @@ async function onNextButtonClick() {
     }
 }
 
+let curAddImg = '';
+function onEditImgButtonClick() {
+    window.bookAPI.chooseImage()
+        .then(({ base64Image }) => {
+            curAddImg = base64Image;
+            $('#preview').attr('src', base64Image);
+        })
+        .catch((error) => {
+            $('#img').val('');
+            $('#preview').attr('src', '../assets/img/default-book.png');
+        });
+}
+
+$('#remove-img-btn').on('click', function () {
+    curAddImg = '';
+    $('#preview').attr('src', '../assets/img/default-book.png');
+});
+
 async function onConfirmButtonClick() {
     const isValid = await validateAllFields();
     if (isValid) {
@@ -68,7 +81,7 @@ async function onConfirmButtonClick() {
             year: getValue('#year'),
             barcode: getValue('#barcode'),
             price: getValue('#price'),
-            img: getValue('#img'),
+            img: curAddImg,
         };
 
         window.bookAPI.add(data)
@@ -88,19 +101,6 @@ async function onConfirmButtonClick() {
         $('#message-modal-fail').text('Please correct invalid fields')
         $('#failModal').modal('show');
     }
-}
-
-function onEditImgButtonClick() {
-    window.bookAPI.chooseImage()
-        .then(({ filePath, base64Image }) => {
-            $('#img').val(filePath);
-
-            $('#preview').attr('src', base64Image);
-        })
-        .catch((error) => {
-            $('#img').val('');
-            $('#preview').attr('src', '../assets/img/default-book.png');
-        });
 }
 
 async function validateAllFields() {
