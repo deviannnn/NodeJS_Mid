@@ -16,12 +16,12 @@ To get started with StarBookPOS, follow these steps:
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/devilkun1/Electron.js_StarBookPOS.git
+   git clone https://github.com/devilkun1/ElectronJS_StarBookPOS.git
 
 2. **Install Dependencies:**
 
    ```bash
-   cd Electron.js_StarBookPOS
+   cd ElectronJS_StarBookPOS
    npm install
 
 3. **Run the Application:**
