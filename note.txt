@@ -1,0 +1,34 @@
+các thành phần quan trọng: renderer, preload, main
+
+preload được đưa vào trước khi load web page
+renderer không thể truy cập & sử dụng API của Nodejs --> không thể giao tiếp với main --> IPC (Inter-Process Communication)
+
+
+main to renderer & renderer to main
+ipcRenderer.send - ipcMain.on -> 1 chiều
+
+renderer to main, main return to renderer
+ipcRenderer.invoke - ipcMain.handle -> 2 chiều
+
+renderer to renderer
+renderer - main - renderer or MessagePorts
+
+TẠI SAO PHẢI CÓ PRELOAD?
+Preload script trong ElectronJS có vai trò quan trọng trong việc kết hợp sự an toàn và bảo mật của môi trường renderer process với khả năng truy cập đầy đủ vào Node.js và Electron APIs từ main process. Dưới đây là một số lý do quan trọng:
+
+1. **Context Isolation:**
+   - Mặc định, Electron kích hoạt tính năng "context isolation" trong renderer process để cô lập code của trang web và giảm thiểu rủi ro an ninh. Điều này đồng nghĩa với việc renderer process không có truy cập trực tiếp vào Node.js và Electron APIs.
+
+2. **Preload Cho Phép Truy Cập Node.js và Electron APIs:**
+   - Preload script được chạy trước khi renderer process bắt đầu, và nó chạy trong ngữ cảnh của trang web với quyền truy cập vào Node.js và Electron APIs. Điều này giúp điều chỉnh "context isolation" và cho phép renderer process sử dụng những tính năng mà nó thường không có quyền truy cập.
+
+3. **Chia Sẻ Đối Tượng và Hàm:**
+   - Preload script cho phép chúng ta chia sẻ các đối tượng và hàm từ main process sang renderer process một cách an toàn. Điều này giúp giảm sự phức tạp của việc truyền dữ liệu giữa các quy trình và cung cấp một cách tiện lợi để chia sẻ logic giữa main process và renderer process.
+
+4. **Bảo Mật:**
+   - Sử dụng preload script giúp giữ cho renderer process cô lập và an toàn bằng cách chặn truy cập trực tiếp vào Node.js và Electron APIs từ renderer process mà không cần tắt "context isolation" hoặc mở rộng quyền truy cập một cách không an toàn.
+
+5. **Tùy Chỉnh Môi Trường Renderer:**
+   - Preload script cho phép bạn tùy chỉnh môi trường của renderer process theo cách mà không làm suy giảm tính bảo mật. Bạn có thể chỉ định các đối tượng hoặc hàm cụ thể mà bạn muốn chia sẻ, giảm thiểu rủi ro an ninh.
+
+Tóm lại, preload script là một thành phần quan trọng giúp kết hợp tính cô lập của renderer process và khả năng truy cập đầy đủ vào Node.js và Electron APIs từ main process, đồng thời giữ cho ứng dụng an toàn và bảo mật.
